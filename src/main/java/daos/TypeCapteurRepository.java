@@ -1,8 +1,8 @@
 
 package daos;
 import org.springframework.data.jpa.repository.JpaRepository;
+import entities.TypeCapteur;
 
-
-public class TypeCapteurRepository extends JpaRepository<TypeCapteur, Integer>{
+public interface TypeCapteurRepository extends JpaRepository<TypeCapteur, Integer>{
     
 }

@@ -1,5 +1,7 @@
 package entities;
-
+import java.util.List;
+import javax.persistence.*;
+import lombok.*;
 
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity
@@ -9,7 +11,7 @@ public class Capteur {
     private int frequenceMeusure;
     
     @ManyToOne
-    private Salle salle;
+    private Piece salle;
     
     @ManyToOne
     private TypeCapteur type;

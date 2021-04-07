@@ -1,5 +1,7 @@
 package entities;
-
+import java.util.List;
+import javax.persistence.*;
+import lombok.*;
 
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity
@@ -10,5 +12,5 @@ public class TypeCapteur {
     private float limiteMin;
     
     @OneToMany(mappedBy="type")
-    private Liste<Capteur> capteurs;
+    private List<Capteur> capteurs;
 }

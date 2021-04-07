@@ -1,5 +1,7 @@
 package entities;
-
+import java.util.List;
+import javax.persistence.*;
+import lombok.*;
 
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity

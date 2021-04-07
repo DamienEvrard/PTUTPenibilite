@@ -1,8 +1,8 @@
 
 package daos;
 import org.springframework.data.jpa.repository.JpaRepository;
+import entities.Mesure;
 
-
-public class MesureRepository extends JpaRepository<Mesure, Integer>{
+public interface MesureRepository extends JpaRepository<Mesure, Integer>{
     
 }
