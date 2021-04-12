@@ -6,8 +6,12 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity
 public class Mesure {
+    
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private Date date;
+    
     private float valeur;
     
     @ManyToOne

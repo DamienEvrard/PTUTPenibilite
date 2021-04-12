@@ -6,6 +6,8 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity
 public class TypeCapteur {
+    
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String libelle;
     private float limiteMax;

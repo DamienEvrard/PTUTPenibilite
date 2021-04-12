@@ -6,8 +6,12 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @ToString
 @Entity
 public class Capteur {
+    
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String libelle;
+    
     private int frequenceMeusure;
     
     @ManyToOne
