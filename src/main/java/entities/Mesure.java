@@ -3,7 +3,7 @@ import java.util.Date;
 import javax.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
+@Getter @Setter @NoArgsConstructor @ToString
 @Entity
 public class Mesure {
     private int id;
