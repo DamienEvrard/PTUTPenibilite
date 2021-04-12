@@ -3,7 +3,7 @@ import java.util.Date;
 import javax.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
 public class Mesure {
     private int id;
@@ -12,4 +12,10 @@ public class Mesure {
     
     @ManyToOne
     Capteur capteur;
+
+    public Mesure(int id, Date date, float valeur) {
+        this.id=id;
+        this.date=date;
+        this.valeur=valeur;
+    }
 }
