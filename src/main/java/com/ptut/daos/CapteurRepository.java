@@ -1,7 +1,7 @@
 
-package daos;
-import entities.Capteur;
-import entities.Mesure;
+package com.ptut.daos;
+import com.ptut.entities.Capteur;
+import com.ptut.entities.Mesure;
 import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

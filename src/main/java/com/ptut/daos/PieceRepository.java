@@ -1,9 +1,9 @@
 
-package daos;
+package com.ptut.daos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import entities.Piece;
-import entities.Mesure;
+import com.ptut.entities.Piece;
+import com.ptut.entities.Mesure;
 import java.util.Date;
 
 

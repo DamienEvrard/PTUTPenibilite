@@ -1,4 +1,4 @@
-package entities;
+package com.ptut.entities;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.*;

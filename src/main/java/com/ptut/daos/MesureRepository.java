@@ -1,7 +1,7 @@
 
-package daos;
+package com.ptut.daos;
 import org.springframework.data.jpa.repository.JpaRepository;
-import entities.Mesure;
+import com.ptut.entities.Mesure;
 
 public interface MesureRepository extends JpaRepository<Mesure, Integer>{
     
