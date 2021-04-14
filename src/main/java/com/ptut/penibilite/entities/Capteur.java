@@ -1,4 +1,4 @@
-package com.ptut.entities;
+package com.ptut.penibilite.entities;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;

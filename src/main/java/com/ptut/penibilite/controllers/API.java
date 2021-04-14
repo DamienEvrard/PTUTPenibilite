@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ptut.controllers;
+package com.ptut.penibilite.controllers;
 
-import com.ptut.daos.MesureRepository;
-import com.ptut.entities.Mesure;
+import com.ptut.penibilite.daos.MesureRepository;
+import com.ptut.penibilite.entities.Mesure;
 import java.util.Date;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
