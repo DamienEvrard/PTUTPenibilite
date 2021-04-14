@@ -7,7 +7,9 @@ package com.ptut.penibilite.controllers;
 
 import com.ptut.penibilite.daos.MesureRepository;
 import com.ptut.penibilite.entities.Mesure;
-import java.util.Date;
+import com.ptut.penibilite.daos.CapteurRepository;
+import com.ptut.penibilite.entities.Capteur;
+import java.time.LocalDateTime;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class API {
     
     MesureRepository mdao;
+    CapteurRepository cdao;
     
     /**
      * Enregistre une mesure
@@ -34,11 +37,13 @@ public class API {
      * @param valeur valeur de la mesure
      */
     @GetMapping(path = "ajout")
-    public void ajoutMesure(@RequestParam("id") int id, @RequestParam("date") Date date, @RequestParam("valeur") float valeur) {
-        Mesure mesure = new Mesure(id, date, valeur);
+    public void ajoutMesure(@RequestParam("id") int id, @RequestParam("date") LocalDateTime date, @RequestParam("valeur") float valeur) {
+        Capteur capteur= new Capteur();
+        Optional<Capteur> c = cdao.findById(id);
+        
+        Mesure mesure = new Mesure(date, valeur, capteur);
         try {
             mdao.save(mesure);
-            
         } catch (DataIntegrityViolationException e) {
             System.out.println("erreur enregistrement Mesure");
         }

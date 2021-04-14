@@ -1,25 +1,21 @@
 package com.ptut.penibilite.entities;
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
 public class Mesure {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    private Date date;
+    @NonNull
+    private LocalDateTime date;
     
+    @NonNull
     private float valeur;
     
-    @ManyToOne
+    @ManyToOne @NonNull
     Capteur capteur;
-
-    public Mesure(int id, Date date, float valeur) {
-        this.id=id;
-        this.date=date;
-        this.valeur=valeur;
-    }
 }
