@@ -12,7 +12,7 @@ public class Capteur {
     
     private String libelle;
     
-    private int frequenceMeusure;
+    private int frequenceMesure;
     
     @ManyToOne
     private Piece salle;
