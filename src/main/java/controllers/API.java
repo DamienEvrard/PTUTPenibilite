@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author damie
  */
 @Controller
-@RequestMapping(path = "/API")
+@RequestMapping(path = "/APICapteur")
 public class API {
     
     MesureRepository mdao;
