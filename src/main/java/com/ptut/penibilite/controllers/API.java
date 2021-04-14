@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package com.ptut.penibilite.controllers;
 
-import daos.MesureRepository;
-import entities.Mesure;
+import com.ptut.penibilite.daos.MesureRepository;
+import com.ptut.penibilite.entities.Mesure;
 import java.util.Date;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author damie
  */
 @Controller
-@RequestMapping(path = "/API")
+@RequestMapping(path = "/APICapteur")
 public class API {
     
     MesureRepository mdao;

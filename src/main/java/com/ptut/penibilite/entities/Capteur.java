@@ -1,4 +1,4 @@
-package entities;
+package com.ptut.penibilite.entities;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ public class Capteur {
     
     private String libelle;
     
-    private int frequenceMesure;
+    private int frequenceMeusure;
     
     @ManyToOne
     private Piece salle;
