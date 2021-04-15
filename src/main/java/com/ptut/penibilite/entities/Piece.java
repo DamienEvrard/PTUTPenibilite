@@ -3,7 +3,7 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
 public class Piece {
     
