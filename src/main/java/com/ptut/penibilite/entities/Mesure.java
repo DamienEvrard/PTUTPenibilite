@@ -1,5 +1,5 @@
 package com.ptut.penibilite.entities;
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import lombok.*;
 
@@ -11,13 +11,11 @@ public class Mesure {
     private int id;
 
     @NonNull
-    private Date date;
-
+    private LocalDateTime date;
+    
     @NonNull
     private float valeur;
     
-    @ManyToOne
+    @ManyToOne @NonNull
     Capteur capteur;
-
-
 }

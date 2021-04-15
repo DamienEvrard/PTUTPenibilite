@@ -9,15 +9,15 @@ public class Capteur {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+    @NonNull
     private String libelle;
+    @NonNull
+    private int frequenceMesure;
     
-    private int frequenceMeusure;
-    
-    @ManyToOne
+    @ManyToOne @NonNull
     private Piece salle;
     
-    @ManyToOne
+    @ManyToOne @NonNull
     private TypeCapteur type;
     
     @OneToMany(mappedBy="capteur")
