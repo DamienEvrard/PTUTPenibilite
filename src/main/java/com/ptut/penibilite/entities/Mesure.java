@@ -7,9 +7,9 @@ import lombok.*;
 @Entity
 public class Mesure {
     
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) @NonNull
     private int id;
-    
+
     @NonNull
     private LocalDateTime date;
     

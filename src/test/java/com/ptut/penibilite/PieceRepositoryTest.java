@@ -1,4 +1,4 @@
-package Repository_Tests;
+package com.ptut.penibilite;
 
 import com.ptut.penibilite.daos.PieceRepository;
 import com.ptut.penibilite.entities.Piece;

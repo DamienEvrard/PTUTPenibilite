@@ -9,5 +9,4 @@ class PenibiliteApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
