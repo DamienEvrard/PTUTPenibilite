@@ -13,5 +13,5 @@ public class Piece {
     private String libelle;
     
     @OneToMany(mappedBy="salle") 
-    private List<Capteur> Capteurs;
+    private List<Capteur> capteurs;
 }
