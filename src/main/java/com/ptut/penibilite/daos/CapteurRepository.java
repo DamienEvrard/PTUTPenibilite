@@ -9,13 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CapteurRepository extends JpaRepository<Capteur, Integer>{
     
-    /**
-     * @param id l'id du capteur
-     * @return le tableau des mesures relevées
-     */
-    @Query("SELECT M.id, M.date, M.valeur from Mesure M where M.capteur.id = :id")
-    Mesure[] getMesure(int id);
-    
+
     /**
      * @param id l'id du capteur
      * @param date la date de debut de relevé
