@@ -7,7 +7,7 @@ import lombok.*;
 @Entity
 public class Piece {
     
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) @NonNull
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NonNull
     private String libelle;

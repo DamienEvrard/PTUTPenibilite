@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Log4j2
 @DataJpaTest
@@ -18,10 +19,12 @@ public class CapteurRepositoryTest {
 
 
     @Test
-    public void testCapteur(){
-        Piece salle = new Piece(1,"salle1");
-        TypeCapteur TCapteur= new TypeCapteur(1,"Type1");
-        Capteur capteur = new Capteur(1,"capteur1",120,salle,TCapteur);
+    public void testCapteurDansPieceEtType(){
+        Piece salle = new Piece("salle1");
+        TypeCapteur tCapteur= new TypeCapteur("Type1");
+        Capteur capteur = new Capteur("capteur1",120,salle,tCapteur);
+        assertEquals(salle.getId(),capteur.getSalle().getId());
+        assertEquals(tCapteur.getId(),capteur.getType().getId());
     }
 
 
