@@ -14,7 +14,7 @@ public interface PieceRepository extends JpaRepository<Piece, Integer>{
      * @param id id de la piece
      * @return le tableau des mesures relevées de la piece 
      */
-    @Query("SELECT M.id, M.date, M.valeur from Mesure M, Capteur C where C.id = M.capteur.id and C.salle.id = :id")
+    @Query(value = "SELECT M.id, M.date, M.valeur from Mesure M, Capteur C where C.id = M.capteur_id and C.salle_id = :id", nativeQuery = true)
     Mesure[] getPenibility(int id);
     
     /**
@@ -23,6 +23,6 @@ public interface PieceRepository extends JpaRepository<Piece, Integer>{
      * @param date la date de debut de relevé 
      * @return le tableau des mesures relevées de la piece 
      */
-    @Query("SELECT M.id, M.date, M.valeur from Mesure M, Capteur C where C.id = M.capteur.id and C.salle.id = :id and and M.date = :date")
+    @Query(value = "SELECT M.id, M.date, M.valeur from Mesure M, Capteur C where C.id = M.capteur_id and C.salle_id = :id and and M.date = :date", nativeQuery = true)
     Mesure[] getPenibility(int id, LocalDateTime date);
 }
