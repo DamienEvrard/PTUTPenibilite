@@ -45,7 +45,7 @@ public class CapteurControlleur {
         capteur.setLibelle(c.get().getLibelle());
         capteur.setSalle(c.get().getSalle());
 
-        Mesure mesure = new Mesure(date, valeur, capteur);
+        Mesure mesure = new Mesure(date,valeur,capteur);
         try {
             mdao.save(mesure);
         } catch (DataIntegrityViolationException e) {
