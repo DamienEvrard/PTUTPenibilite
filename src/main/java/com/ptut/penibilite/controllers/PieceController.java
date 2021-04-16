@@ -21,4 +21,12 @@ public class PieceController {
         model.addAttribute("capteurs",piece.getCapteurs());
         return "piece";
     }
+
+    @GetMapping("add")
+    public String getPiece(Model model){
+        model.addAttribute("pieces", pieceRepository.findAll());
+        return "formAjoutPiece";
+    }
+
+
 }
