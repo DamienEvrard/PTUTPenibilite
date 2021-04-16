@@ -25,6 +25,9 @@ public class PieceController {
     @Autowired
     private TypeCapteurRepository typeCapteurRepository;
 
+    @Autowired
+    private CapteurRepository capteurRepository;
+
     @GetMapping("")
     public String getPiece(Model model, @RequestParam("id") Piece piece){
         model.addAttribute("pieces", pieceRepository.findAll());
@@ -44,7 +47,7 @@ public class PieceController {
      *
      * @param piece Une piece initialisée avec les valeurs saisies dans le formulaire
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
-     * @return une redirection vers l'affichage de la liste des tableaux
+     * @return une redirection vers le formulaire
      */
     @PostMapping(path = "save")
     public String addPiece(Piece piece, RedirectAttributes redirectInfo) {
@@ -67,12 +70,32 @@ public class PieceController {
      * @return vue formAjoutCapteur.html
      */
     @GetMapping("capteur/add")
-    public String getPiece(@ModelAttribute("capteur") Capteur capteur, Model model, @RequestParam("id") Piece piece){
+    public String getPiece(@ModelAttribute("newCapteur") Capteur capteur, Model model, @RequestParam("id") Piece piece){
         model.addAttribute("pieces", pieceRepository.findAll());
         model.addAttribute("capteurs", piece.getCapteurs());
         model.addAttribute("typeCapteur", typeCapteurRepository.findAll());
         model.addAttribute("piece", piece);
 
         return "formAjoutCapteur";
+    }
+
+    /**
+     * Appelé par 'formulaireAjoutCapteur.html', méthode POST
+     *
+     * @param capteur Un capteur initialisée avec les valeurs saisies dans le formulaire
+     * @param redirectInfo pour transmettre des paramètres lors de la redirection
+     * @return une redirection vers le formulaire
+     */
+    @PostMapping(path = "capteur/save")
+    public String addCapteur(Capteur capteur, RedirectAttributes redirectInfo, @RequestParam("salle") Piece piece) {
+        String message;
+        try {
+            capteurRepository.save(capteur);
+            message = "Le capteur '" + capteur.getLibelle() + "' a été correctement enregistrée";
+        } catch (DataIntegrityViolationException e) {
+            message = "Erreur : Le capteur '" + capteur.getLibelle() + "' existe déjà";
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:/piece/capteur/add?id="+piece.getId();
     }
 }

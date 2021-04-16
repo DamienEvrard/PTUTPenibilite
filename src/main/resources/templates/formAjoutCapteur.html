@@ -21,7 +21,7 @@
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
                 <div class="border-bottom row">
-                    <h1 th:text="${piece.libelle}" class="col-md-6"></h1>
+                    <h1 class="col-md-6"><a class="text-dark" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a></h1>
                 </div>
                 <p th:text="${message}"></p>
                 <div class="row">
@@ -30,19 +30,25 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Ajouter un capteur</h4>
-                                <form class="forms-sample" th:object="${capteur}" method="POST" th:action="@{save}">
+                                <form class="forms-sample" th:object="${newCapteur}" method="POST" th:action="@{/piece/capteur/save(salle=${piece.id})}">
                                     <div class="form-group row">
                                         <label for="addCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{libelle}" type="text" class="form-control" id="addCapteurLibelle" placeholder="Nom du capteur">
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addCapteurLibelle" placeholder="Nom du capteur" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="addCapteurType" class="col-sm-3 col-form-label">Type</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="type" id="addCapteurType"  placeholder="type du capteur">
+                                            <select class="form-control" name="type" id="addCapteurType" required>
                                                 <option th:each="tc: ${typeCapteur}" th:value="${tc.id}">[[${tc.libelle}]]</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addCapteurFrequence" class="col-sm-3 col-form-label">Fréquence (min)</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{frequenceMesure}" type="number" min="1" class="form-control" id="addCapteurFrequence" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
@@ -62,16 +68,16 @@
                                     <tr>
                                         <th>Libelle</th>
                                         <th>Type</th>
-                                        <th>Limite min</th>
-                                        <th>Limite max</th>
+                                        <th>Fréquence</th>
+                                        <th>Intervale de mesure</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="c: ${capteurs}">
                                         <td th:text="${c.libelle}"></td>
                                         <td th:text="${c.type.libelle}"></td>
-                                        <td th:text="${c.type.limiteMin}"></td>
-                                        <td th:text="${c.type.limiteMax}"></td>
+                                        <td>[[${c.frequenceMesure}]] min</td>
+                                        <td> [[${c.type.limiteMin}]] à [[${c.type.limiteMax}]]</td>
                                     </tr>
                                     </tbody>
                                 </table>
