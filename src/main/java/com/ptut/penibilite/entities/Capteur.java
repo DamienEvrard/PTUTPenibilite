@@ -3,23 +3,26 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
 public class Capteur {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+    @NonNull
     private String libelle;
-    
-    private int frequenceMeusure;
-    
-    @ManyToOne
+    @NonNull
+    private int frequenceMesure;
+
+    @ToString.Exclude
+    @ManyToOne @NonNull
     private Piece salle;
-    
-    @ManyToOne
+
+    @ToString.Exclude
+    @ManyToOne @NonNull
     private TypeCapteur type;
-    
+
+    @ToString.Exclude
     @OneToMany(mappedBy="capteur")
     List<Mesure> mesures;
     

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${piece.libelle}"></title>
+    <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}" >
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+
+<div class="container-scroller">
+    <!-- NAVBAR -->
+    <div th:replace="navbar :: content"></div>
+    <!-- END NAVBAR -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- SIDEBAR -->
+        <div th:replace="sidebar :: content"></div>
+        <!-- END SIDEBAR -->
+        <div class="main-panel">
+            <!-- PAGE CONTENT -->
+            <div class="content-wrapper">
+                <div class="border-bottom">
+                    <h1 th:text="${piece.libelle}"></h1>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 stretch-card grid-margin" th:each="c: ${capteurs}">
+                        <div class="card bg-gradient-danger card-img-holder text-white">
+                            <div class="card-body">
+                                <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3" th:text="${c.libelle}"><i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5">$ 15,0000</h2>
+                                <h6 class="card-text">Dernier relevé</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- FOOTER -->
+            <div th:replace="footer :: content"></div>
+            <!-- END FOOTER -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+</div>
+<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar -->
+<script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+<!-- Menu mobile -->
+<script th:src="@{/assets/js/off-canvas.js}"></script>
+<!-- Menu destock plié -->
+<script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Autres annimations-->
+<script th:src="@{/assets/js/misc.js}" ></script>
+</body>
+</html>

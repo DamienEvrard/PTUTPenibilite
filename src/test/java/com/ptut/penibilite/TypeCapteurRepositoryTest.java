@@ -1,4 +1,4 @@
-package Repository_Tests;
+package com.ptut.penibilite;
 
 public class TypeCapteurRepositoryTest {
     

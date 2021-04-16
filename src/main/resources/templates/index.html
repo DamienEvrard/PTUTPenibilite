@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>La pénibilité ambiante</title>
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+<!--    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">-->
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body>
+
+<div class="container-scroller">
+    <!-- NAVBAR -->
+    <div th:replace="navbar :: content"></div>
+    <!-- END NAVBAR -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- SIDEBAR -->
+        <div th:replace="sidebar :: content"></div>
+        <!-- END SIDEBAR -->
+        <div class="main-panel">
+            <!-- PAGE CONTENT -->
+            <div class="content-wrapper">
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- FOOTER -->
+            <div th:replace="footer :: content"></div>
+            <!-- END FOOTER -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+</div>
+<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- Menu mobile -->
+<script src="assets/js/off-canvas.js"></script>
+<!-- Menu destock plié -->
+<script src="assets/js/hoverable-collapse.js"></script>
+<!--Autres annimations-->
+<script src="assets/js/misc.js"></script>
+</body>
+</html>
