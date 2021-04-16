@@ -9,7 +9,8 @@ public class Piece {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+
+    @NonNull @Column(unique = true)
     private String libelle;
     
     @OneToMany(mappedBy="salle") 
