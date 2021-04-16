@@ -1,6 +1,9 @@
 package com.ptut.penibilite.controllers;
 
+import com.ptut.penibilite.daos.CapteurRepository;
 import com.ptut.penibilite.daos.PieceRepository;
+import com.ptut.penibilite.daos.TypeCapteurRepository;
+import com.ptut.penibilite.entities.Capteur;
 import com.ptut.penibilite.entities.Piece;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,6 +21,9 @@ public class PieceController {
 
     @Autowired
     private PieceRepository pieceRepository;
+
+    @Autowired
+    private TypeCapteurRepository typeCapteurRepository;
 
     @GetMapping("")
     public String getPiece(Model model, @RequestParam("id") Piece piece){
@@ -53,4 +59,20 @@ public class PieceController {
         return "redirect:add";
     }
 
+    /**
+     * Affiche le formulaire d'ajout de capteur pour une pièce
+     *
+     * @param capteur modèle de donnée pour le formulaire
+     * @param piece la pièce où on ajoute le capteur
+     * @return vue formAjoutCapteur.html
+     */
+    @GetMapping("capteur/add")
+    public String getPiece(@ModelAttribute("capteur") Capteur capteur, Model model, @RequestParam("id") Piece piece){
+        model.addAttribute("pieces", pieceRepository.findAll());
+        model.addAttribute("capteurs", piece.getCapteurs());
+        model.addAttribute("typeCapteur", typeCapteurRepository.findAll());
+        model.addAttribute("piece", piece);
+
+        return "formAjoutCapteur";
+    }
 }

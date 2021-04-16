@@ -15,7 +15,8 @@ public class TypeCapteur {
     private float limiteMax;
     
     private float limiteMin;
-    
+
+    @ToString.Exclude
     @OneToMany(mappedBy="type")
     private List<Capteur> capteurs;
 }

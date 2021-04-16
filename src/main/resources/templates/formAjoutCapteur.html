@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouté un capteur</title>
+    <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}" >
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+
+<div class="container-scroller">
+    <!-- NAVBAR -->
+    <div th:replace="navbar :: content"></div>
+    <!-- END NAVBAR -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- SIDEBAR -->
+        <div th:replace="sidebar :: content"></div>
+        <!-- END SIDEBAR -->
+        <div class="main-panel">
+            <!-- PAGE CONTENT -->
+            <div class="content-wrapper">
+                <div class="border-bottom row">
+                    <h1 th:text="${piece.libelle}" class="col-md-6"></h1>
+                </div>
+                <p th:text="${message}"></p>
+                <div class="row">
+                    <!-- FORM ADD -->
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter un capteur</h4>
+                                <form class="forms-sample" th:object="${capteur}" method="POST" th:action="@{save}">
+                                    <div class="form-group row">
+                                        <label for="addCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addCapteurLibelle" placeholder="Nom du capteur">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addCapteurType" class="col-sm-3 col-form-label">Type</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="type" id="addCapteurType"  placeholder="type du capteur">
+                                                <option th:each="tc: ${typeCapteur}" th:value="${tc.id}">[[${tc.libelle}]]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END FORM ADD -->
+                    <!-- LIST SENSORS  -->
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Liste des capteurs</h4>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+                                        <th>Type</th>
+                                        <th>Limite min</th>
+                                        <th>Limite max</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="c: ${capteurs}">
+                                        <td th:text="${c.libelle}"></td>
+                                        <td th:text="${c.type.libelle}"></td>
+                                        <td th:text="${c.type.limiteMin}"></td>
+                                        <td th:text="${c.type.limiteMax}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END LIST SENSORS  -->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- FOOTER -->
+            <div th:replace="footer :: content"></div>
+            <!-- END FOOTER -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+</div>
+<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar -->
+<script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+<!-- Menu mobile -->
+<script th:src="@{/assets/js/off-canvas.js}"></script>
+<!-- Menu destock plié -->
+<script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Autres annimations-->
+<script th:src="@{/assets/js/misc.js}" ></script>
+</body>
+</html>
