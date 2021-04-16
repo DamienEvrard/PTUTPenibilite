@@ -10,10 +10,11 @@ import com.ptut.penibilite.entities.Mesure;
 import com.ptut.penibilite.daos.CapteurRepository;
 import com.ptut.penibilite.entities.Capteur;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author damie
  */
 @Controller
-@RequestMapping(path = "/APICapteur")
-public class CapteurControlleur {
+@RequestMapping(path = "/capteur")
+public class CapteurController {
     
     MesureRepository mdao;
     CapteurRepository cdao;
@@ -36,7 +37,7 @@ public class CapteurControlleur {
      * @param date date de l'envoi
      * @param valeur valeur de la mesure
      */
-    @GetMapping(path = "ajout")
+    @GetMapping(path = "/ajout")
     public void ajoutMesure(@RequestParam("id") int id, @RequestParam("date") LocalDateTime date, @RequestParam("valeur") float valeur) {
         Capteur capteur= new Capteur();
         Optional<Capteur> c = cdao.findById(id);

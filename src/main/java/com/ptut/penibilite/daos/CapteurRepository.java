@@ -17,6 +17,12 @@ public interface CapteurRepository extends JpaRepository<Capteur, Integer>{
      */
     @Query("SELECT M.id, M.date, M.valeur from Mesure M where M.capteur.id = :id and M.date = :date")
     Mesure[] getMesure(int id, LocalDateTime date);
-    
-    
+
+    /**
+     * @param id l'id du capteur
+     * @param date la date d'aujourd'hui
+     * @return la derniere mesure relevée
+     */
+    @Query(value = "SELECT M.valeur from Mesure M where M.capteur_id = :id and M.date = (Select Max(Me.date) FROM Mesure Me WHERE Me.date< :date )", nativeQuery = true)
+    int getLastMesure(int id, LocalDateTime date);
 }

@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,18 +57,18 @@ public class CapteurRepositoryTest {
         Capteur capteur = new Capteur("capteur1", 120, salle, tCapteur);
         cdao.save(capteur);
         List<Capteur> c = cdao.findAll();
-        assertEquals(1, c.size());
+        assertEquals(10, c.size());
     }
 
     @Test
-    public void capteurMesure() {
+    public void getMesures() {
         LocalDateTime d1 = LocalDateTime.now();
-        Piece salle = new Piece("salle1");
-        TypeCapteur tCapteur = new TypeCapteur("Type1");
-        pdao.save(salle);
-        tdao.save(tCapteur);
-        Capteur capteur = new Capteur("capteur1", 120, salle, tCapteur);
-        cdao.save(capteur);
+
+        Optional<Capteur> c = cdao.findById(1);
+        Capteur capteur = new Capteur();
+        capteur.setId(c.get().getId());
+        capteur.setLibelle(c.get().getLibelle());
+        capteur.setSalle(c.get().getSalle());
 
         Mesure m1 = new Mesure(d1,45,capteur);
         Mesure m2 = new Mesure(d1,12,capteur);
@@ -79,7 +81,29 @@ public class CapteurRepositoryTest {
         capteur.setMesures(lMesure);
         cdao.save(capteur);
 
-        List<Capteur> c = cdao.findAll();
-        assertEquals(45, c.get(0).getMesures().get(0).getValeur());
+        List<Capteur> listC = cdao.findAll();
+
+        assertEquals(12, listC.get(0).getMesures().get(listC.get(0).getMesures().size()-1).getValeur());
+    }
+
+
+    @Test
+    public void lastMesureCapteur() {
+        LocalDateTime d1 = LocalDateTime.now();
+        String d = "2021-03-28 12:30:00";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime d2 = LocalDateTime.parse(d, formatter);
+        Piece salle = new Piece("salle1");
+        TypeCapteur tCapteur = new TypeCapteur("Type1");
+        Capteur capteur = new Capteur("capteur1", 120, salle, tCapteur);
+        Mesure m1 = new Mesure(d1,45,capteur);
+        Mesure m2 = new Mesure(d2,12,capteur);
+        pdao.save(salle);
+        tdao.save(tCapteur);
+        cdao.save(capteur);
+        mdao.save(m1);
+        mdao.save(m2);
+        int lastMesure = cdao.getLastMesure(capteur.getId(),LocalDateTime.now());
+        assertEquals(lastMesure,m1.getValeur());
     }
 }
