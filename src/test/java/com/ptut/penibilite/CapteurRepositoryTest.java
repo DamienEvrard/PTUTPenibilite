@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Log4j2
 @DataJpaTest
@@ -63,6 +64,9 @@ public class CapteurRepositoryTest {
     @Test
     public void getMesures() {
         LocalDateTime d1 = LocalDateTime.now();
+        String d = "2022-03-28 12:30:00";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime d2 = LocalDateTime.parse(d, formatter);
 
         Optional<Capteur> c = cdao.findById(1);
         Capteur capteur = new Capteur();
@@ -71,7 +75,7 @@ public class CapteurRepositoryTest {
         capteur.setSalle(c.get().getSalle());
 
         Mesure m1 = new Mesure(d1,45,capteur);
-        Mesure m2 = new Mesure(d1,12,capteur);
+        Mesure m2 = new Mesure(d2,12,capteur);
         mdao.save(m1);
         mdao.save(m2);
 
@@ -83,7 +87,11 @@ public class CapteurRepositoryTest {
 
         List<Capteur> listC = cdao.findAll();
 
+        String date = "2022-03-28 11:30:00";
+        LocalDateTime d3 = LocalDateTime.parse(date, formatter);
+
         assertEquals(12, listC.get(0).getMesures().get(listC.get(0).getMesures().size()-1).getValeur());
+        assertEquals(12,cdao.getMesure(capteur.getId(), d3)[0]);
     }
 
 

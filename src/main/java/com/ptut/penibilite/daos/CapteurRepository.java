@@ -15,8 +15,8 @@ public interface CapteurRepository extends JpaRepository<Capteur, Integer>{
      * @param date la date de debut de relevé
      * @return le tableau des mesures relevées à partir de la date 
      */
-    @Query("SELECT M.id, M.date, M.valeur from Mesure M where M.capteur.id = :id and M.date = :date")
-    Mesure[] getMesure(int id, LocalDateTime date);
+    @Query("SELECT M.valeur from Mesure M where M.capteur.id = :id and M.date >= :date")
+    int[] getMesure(int id, LocalDateTime date);
 
     /**
      * @param id l'id du capteur
