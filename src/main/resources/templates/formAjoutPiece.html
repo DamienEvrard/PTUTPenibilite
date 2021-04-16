@@ -20,21 +20,22 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
+                <p th:text="${message}"></p>
                 <div class="row">
                     <!-- FORM ADD -->
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Ajouter une pièce</h4>
-                                <form class="forms-sample">
+                                <form class="forms-sample" th:object="${piece}" method="POST" th:action="@{save}">
                                     <div class="form-group row">
                                         <label for="addPieceLibelle" class="col-sm-3 col-form-label">Libellé</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="addPieceLibelle" placeholder="Nom de la pièce">
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addPieceLibelle" placeholder="Nom de la pièce">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
                                 </form>
                             </div>
                         </div>
