@@ -13,13 +13,16 @@ public class Capteur {
     private String libelle;
     @NonNull
     private int frequenceMesure;
-    
+
+    @ToString.Exclude
     @ManyToOne @NonNull
     private Piece salle;
-    
+
+    @ToString.Exclude
     @ManyToOne @NonNull
     private TypeCapteur type;
-    
+
+    @ToString.Exclude
     @OneToMany(mappedBy="capteur")
     List<Mesure> mesures;
     
