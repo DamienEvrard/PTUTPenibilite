@@ -21,7 +21,7 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul th:each="p: ${pieces}" class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a th:text="${p.libelle}" class="nav-link" th:href="@{piece(id=${p.id})}"></a></li>
+                    <li class="nav-item"> <a th:text="${p.libelle}" class="nav-link" th:href="@{/piece(id=${p.id})}"></a></li>
                 </ul>
             </div>
         </li>
