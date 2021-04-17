@@ -76,6 +76,7 @@ public class typeCapteurController {
      *
      * @param type Un type de capteur initialisée avec les valeurs saisies dans le formulaire
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
+     * @param id id du type de capteur à modifier
      * @return une redirection vers le formulaire si pas de modification
      * @return une redirection vers le formAjoutTypeCapteur si modifier
      */
@@ -83,36 +84,36 @@ public class typeCapteurController {
     public String modifyTypeCapteur(TypeCapteur type, RedirectAttributes redirectInfo,@PathVariable int id) {
         String message;
         int cpt = 0;
-        TypeCapteur t = typeCapteurRepository.getOne(id);
+        TypeCapteur typeToUpDate = typeCapteurRepository.getOne(id);
 
-        if (!type.getLibelle().isEmpty() && type.getLibelle() != t.getLibelle()){
-            t.setLibelle(type.getLibelle());
+        if (!type.getLibelle().isEmpty() && type.getLibelle() != typeToUpDate.getLibelle()){
+            typeToUpDate.setLibelle(type.getLibelle());
             cpt++;
         }
-        if (type.getLimiteMin() != t.getLimiteMin()){
-            t.setLimiteMin(type.getLimiteMin());
+        if (type.getLimiteMin() != typeToUpDate.getLimiteMin()){
+            typeToUpDate.setLimiteMin(type.getLimiteMin());
             cpt++;
         }
-        if (type.getLimiteMax() != t.getLimiteMax()){
-            t.setLimiteMax(type.getLimiteMax());
+        if (type.getLimiteMax() != typeToUpDate.getLimiteMax()){
+            typeToUpDate.setLimiteMax(type.getLimiteMax());
             cpt++;
         }
-        if (!type.getUnite().isEmpty() && type.getUnite() != t.getUnite()){
-            t.setUnite(type.getUnite());
+        if (!type.getUnite().isEmpty() && type.getUnite() != typeToUpDate.getUnite()){
+            typeToUpDate.setUnite(type.getUnite());
             cpt++;
         }
 
         if (cpt>0){
             try {
-                typeCapteurRepository.save(t);
-                message = "Les modification du type '" + t.getLibelle() + "' ont été correctement enregistrées";
+                typeCapteurRepository.save(typeToUpDate);
+                message = "Les modification du type '" + typeToUpDate.getLibelle() + "' ont été correctement enregistrées";
             } catch (DataIntegrityViolationException e) {
-                message = "Erreur mis-à-jour : du type '" + t.getLibelle();
+                message = "Erreur mis-à-jour : du type '" + typeToUpDate.getLibelle();
             }
             redirectInfo.addFlashAttribute("message", message);
             return "redirect:/type/add";
         }else {
-            message = "Aucune modification apporté pour le type '" + t.getLibelle();
+            message = "Aucune modification apporté pour le type '" + typeToUpDate.getLibelle();
             redirectInfo.addFlashAttribute("message", message);
             return "redirect:/type/modify?id="+id;
         }

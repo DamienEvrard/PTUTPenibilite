@@ -24,4 +24,28 @@ function deleteType(id) {
     }
 }
 
+function deleteCapteur(id) {
+    if (confirm('êtes-vous sûr de vouloir supprimer ce type ?' +id)){
+
+        $.ajax({
+            url: url + 'api/capteur/delete' ,
+            data : {
+                id : id
+            },
+            method: 'DELETE'
+        })
+            .done((data)=> {
+                if(data.status === 0){
+                    window.location.reload();
+                }else  {
+                    document.getElementById("msg").innerHTML = "Vous ne pouvez pas supprimez ce type car des capteurs y sont associés";
+                }
+            })
+            .fail((data) => {
+                console.log("fail" , data);
+            })
+
+    }
+}
+
 

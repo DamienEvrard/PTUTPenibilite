@@ -22,7 +22,7 @@
             <div class="content-wrapper">
                 <div class="border-bottom row">
                     <h1 th:text="${piece.libelle}" class="col-md-6"></h1>
-                    <a class="btn btn-outline-primary" role="button" th:href="@{/piece/capteur/add(id=${piece.id})}">Ajouter un capteur</a>
+                    <a class="btn btn-outline-primary ml-3" role="button" th:href="@{/capteur/add(id=${piece.id})}">Capteurs <i class="mdi mdi-wrench ml-3"></i></a>
 
                 </div>
                 <div class="row mt-3">
@@ -30,9 +30,11 @@
                         <div class="card bg-gradient-danger card-img-holder text-white">
                             <div class="card-body">
                                 <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
-                                <h4 class="font-weight-normal mb-3" th:text="${c.libelle}"><i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                <a class="mdi mdi-lead-pencil position-absolute text-light" th:href="@{/capteur/modify(id=${c.id})}" style="right: 10%"></a>
+                                <h4 class="font-weight-normal mb-3">
+                                    [[${c.libelle}]]
                                 </h4>
-                                <h2 class="mb-5">$ 15,0000</h2>
+                                <h2 class="mb-5">${c.getLastMesure()} [[${c.type.unite}]]</h2>
                                 <h6 class="card-text">[[${c.type.libelle}]] : Dernier relevé </h6>
                             </div>
                         </div>

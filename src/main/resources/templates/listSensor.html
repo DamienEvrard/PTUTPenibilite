@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="content" class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste des capteurs</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Type</th>
+                    <th>Fréquence</th>
+                    <th>Intervale de mesure</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c: ${capteurs}">
+                    <td th:text="${c.libelle}"></td>
+                    <td th:text="${c.type.libelle}"></td>
+                    <td>[[${c.frequenceMesure}]] min</td>
+                    <td> [[${c.type.limiteMin}]] à [[${c.type.limiteMax}]] [[${c.type.unite}]]</td>
+                    <td><a class="mdi mdi-lead-pencil" th:href="@{/capteur/modify(id=${c.id})}"></a> </td>
+                    <td><a class="mdi mdi-delete-forever"  th:onclick="'deleteCapteur('+${c.id}+')'"></a> </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
