@@ -24,8 +24,8 @@
                     <td th:text="${c.type.libelle}"></td>
                     <td>[[${c.frequenceMesure}]] min</td>
                     <td> [[${c.type.limiteMin}]] à [[${c.type.limiteMax}]] [[${c.type.unite}]]</td>
-                    <td><a class="mdi mdi-lead-pencil" th:href="@{/capteur/modify(id=${c.id})}"></a> </td>
-                    <td><a class="mdi mdi-delete-forever"  th:onclick="'deleteCapteur('+${c.id}+')'"></a> </td>
+                    <td><a class="mdi mdi-lead-pencil text-danger" th:href="@{/capteur/modify(id=${c.id})}"></a> </td>
+                    <td><a class="mdi mdi-delete-forever text-danger"  th:onclick="'deleteCapteur('+${c.id}+','+${piece.id}+')'"></a> </td>
                 </tr>
                 </tbody>
             </table>
