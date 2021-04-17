@@ -14,7 +14,7 @@ function deleteType(id) {
             if(data.status === 0){
                 window.location.reload();
             }else  {
-                document.getElementById("msg").innerHTML = "Vous ne pouvez pas supprimez ce type car des capteurs y sont associés";
+                document.getElementById("msg").innerHTML = "Vous ne pouvez pas supprimer ce type car des capteurs y sont associés.";
             }
         })
         .fail((data) => {
@@ -38,7 +38,7 @@ function deleteCapteur(id) {
                 if(data.status === 0){
                     window.location.reload();
                 }else  {
-                    document.getElementById("msg").innerHTML = "Vous ne pouvez pas supprimez ce type car des capteurs y sont associés";
+                    document.getElementById("msg").innerHTML = "Vous ne pouvez pas supprimer ce capteur car des mesures y sont associées.";
                 }
             })
             .fail((data) => {

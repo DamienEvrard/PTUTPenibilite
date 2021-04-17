@@ -23,7 +23,7 @@
                 <div class="border-bottom row mb-4 ml-3">
                     <h1><a class="text-danger" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a></h1>
                 </div>
-                <p th:text="${message}"></p>
+                <p id="msg" th:text="${message}"></p>
                 <div class="row">
                     <!-- FORM ADD -->
                     <div class="col-12 grid-margin stretch-card">
@@ -79,6 +79,8 @@
 <script th:src="@{/assets/js/off-canvas.js}"></script>
 <!-- Menu destock plié -->
 <script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Action supprimer élément-->
+<script th:src="@{/assets/js/deleteAct.js}" ></script>
 <!--Autres annimations-->
 <script th:src="@{/assets/js/misc.js}" ></script>
 </body>

@@ -22,7 +22,7 @@
                 <div class="border-bottom row mb-4 ml-3">
                     <h1>[[${capteur.libelle}]] dans <a class="text-danger text-lowercase" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a></h1>
                 </div>
-                <p th:text="${message}"></p>
+                <p id="msg" th:text="${message}"></p>
                 <div class="row">
                     <!-- FORM ADD -->
                     <div class="col-12 grid-margin stretch-card">
