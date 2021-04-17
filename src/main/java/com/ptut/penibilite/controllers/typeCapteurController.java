@@ -44,7 +44,7 @@ public class typeCapteurController {
      * @return une redirection vers le formulaire
      */
     @PostMapping(path = "save")
-    public String addCapteur(TypeCapteur type, RedirectAttributes redirectInfo) {
+    public String addTypeCapteur(TypeCapteur type, RedirectAttributes redirectInfo) {
         String message;
         try {
             typeCapteurRepository.save(type);
@@ -64,7 +64,7 @@ public class typeCapteurController {
      * @return vue formModifySensorType.html
      */
     @GetMapping(path = "modify")
-    public String addCapteur(Model model, @ModelAttribute("typeC") TypeCapteur typeCapteur,@RequestParam("id") TypeCapteur myType) {
+    public String viewModifyTypeCapteur(Model model, @ModelAttribute("typeC") TypeCapteur typeCapteur,@RequestParam("id") TypeCapteur myType) {
         model.addAttribute("pieces", pieceRepository.findAll());
         model.addAttribute("types", typeCapteurRepository.findAll());
         model.addAttribute("type", myType);
@@ -80,7 +80,7 @@ public class typeCapteurController {
      * @return une redirection vers le formAjoutTypeCapteur si modifier
      */
     @PostMapping(path = "modify/save/{id}")
-    public String addCapteur(TypeCapteur type, RedirectAttributes redirectInfo,@PathVariable int id) {
+    public String modifyTypeCapteur(TypeCapteur type, RedirectAttributes redirectInfo,@PathVariable int id) {
         String message;
         int cpt = 0;
         TypeCapteur t = typeCapteurRepository.getOne(id);
@@ -116,6 +116,5 @@ public class typeCapteurController {
             redirectInfo.addFlashAttribute("message", message);
             return "redirect:/type/modify?id="+id;
         }
-
     }
 }

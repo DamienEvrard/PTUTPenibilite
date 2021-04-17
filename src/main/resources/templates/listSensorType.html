@@ -21,7 +21,7 @@
                     <td th:text="${t.libelle}"></td>
                     <td> [[${t.limiteMin}]] à [[${t.limiteMax}]] [[${t.unite}]]</td>
                     <td><a class="mdi mdi-lead-pencil" th:href="@{modify(id=${t.id})}"></a> </td>
-                    <td><a class="mdi mdi-delete-forever"  onclick="deleteType([[{t.id}]])"></a> </td>
+                    <td><a class="mdi mdi-delete-forever"  th:onclick="'deleteType('+${t.id}+')'"></a> </td>
                 </tr>
                 </tbody>
             </table>
