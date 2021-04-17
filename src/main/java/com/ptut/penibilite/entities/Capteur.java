@@ -17,11 +17,11 @@ public class Capteur {
     private int frequenceMesure;
 
     @ToString.Exclude
-    @ManyToOne @NonNull @Column(nullable = false)
+    @ManyToOne @NonNull
     private Piece salle;
 
     @ToString.Exclude
-    @ManyToOne @NonNull @Column(nullable = false)
+    @ManyToOne @NonNull
     private TypeCapteur type;
 
     @ToString.Exclude

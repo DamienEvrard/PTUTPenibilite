@@ -16,6 +16,6 @@ public class Mesure {
     @NonNull @Column(nullable = false)
     private float valeur;
     
-    @ManyToOne @NonNull @Column(nullable = false)
+    @ManyToOne @NonNull
     Capteur capteur;
 }
