@@ -52,7 +52,7 @@
                                     <div class="form-group row">
                                         <label for="addTypeCapteurUnite" class="col-sm-3 col-form-label">Unité de mesure</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="addTypeCapteurUnite" placeholder="°C" required>
+                                            <input type="text" th:field="*{unite}" class="form-control" id="addTypeCapteurUnite" placeholder="°C" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Envoyer</button>

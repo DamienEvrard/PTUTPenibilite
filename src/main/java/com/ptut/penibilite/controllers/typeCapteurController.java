@@ -97,10 +97,10 @@ public class typeCapteurController {
             t.setLimiteMax(type.getLimiteMax());
             cpt++;
         }
-       /* if (!type.getUnite().isEmpty() && type.getUnite() != t.getUnite()){
+        if (!type.getUnite().isEmpty() && type.getUnite() != t.getUnite()){
             t.setUnite(type.getUnite());
             cpt++;
-        }*/
+        }
 
         if (cpt>0){
             try {
