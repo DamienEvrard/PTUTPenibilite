@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ajouté un type capteur</title>
+    <title>Modifié type [[${type.libelle}]]</title>
     <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}" >
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
@@ -21,38 +21,39 @@
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
                 <div class="border-bottom row mb-4">
-                    <h1>Type de capteur</h1>
+                    <h1>Modifié le type : [[${type.libelle}]]</h1>
                 </div>
                 <p th:text="${message}"></p>
+
                 <div class="row">
                     <!-- FORM ADD -->
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Ajouter un type de capteur</h4>
-                                <form class="forms-sample" th:object="${typeC}" method="POST" th:action="@{/type/save}">
+                                <h4 class="card-title">Modifié type [[${type.libelle}]]</h4>
+                                <form class="forms-sample" th:object="${typeC}" method="POST" th:action="@{/type/modify/save/{id}(id = ${type.id})}">
                                     <div class="form-group row">
                                         <label for="addTypeCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{libelle}" type="text" class="form-control" id="addTypeCapteurLibelle" placeholder="Nom du type de capteur" required>
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addTypeCapteurLibelle" th:placeholder="${type.libelle}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="addTypeCapteurMin" class="col-sm-3 col-form-label">Limite minimal</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{limiteMin}" type="number" class="form-control" id="addTypeCapteurMin">
+                                            <input th:field="*{limiteMin}" type="number" class="form-control" id="addTypeCapteurMin" th:value="${type.limiteMin}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="addTypeCapteurMax" class="col-sm-3 col-form-label">Limite maximal</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{limiteMax}" type="number" class="form-control" id="addTypeCapteurMax">
+                                            <input th:field="*{limiteMax}" type="number" class="form-control" id="addTypeCapteurMax" th:value="${type.limiteMax}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="addTypeCapteurUnite" class="col-sm-3 col-form-label">Unité de mesure</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="addTypeCapteurUnite" placeholder="°C" required>
+                                            <input type="text" class="form-control" id="addTypeCapteurUnite" placeholder="°C">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>

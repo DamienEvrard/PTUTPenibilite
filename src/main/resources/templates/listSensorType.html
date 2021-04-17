@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="content" class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste des types de capteurs</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Intervale de mesure</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="t: ${types}">
+                    <td th:text="${t.libelle}"></td>
+                    <td> [[${t.limiteMin}]] à [[${t.limiteMax}]]</td>
+                    <td><a class="mdi mdi-lead-pencil" th:href="@{modify(id=${t.id})}"></a> </td>
+                    <td><a class="mdi mdi-delete-forever"  th:href="@{delete(id=${t.id})}"></a> </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
