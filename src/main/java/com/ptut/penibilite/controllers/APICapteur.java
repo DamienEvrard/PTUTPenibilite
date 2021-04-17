@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(path = "/APIcapteur")
-public class CapteurController {
+public class APICapteur {
     
     MesureRepository mdao;
     CapteurRepository cdao;
@@ -39,13 +39,7 @@ public class CapteurController {
      */
     @GetMapping(path = "/ajout")
     public void ajoutMesure(@RequestParam("id") int id, @RequestParam("date") LocalDateTime date, @RequestParam("valeur") float valeur) {
-        Capteur capteur= new Capteur();
-        Optional<Capteur> c = cdao.findById(id);
-        capteur.setFrequenceMesure(c.get().getFrequenceMesure());
-        capteur.setId(c.get().getId());
-        capteur.setLibelle(c.get().getLibelle());
-        capteur.setSalle(c.get().getSalle());
-
+        Capteur capteur = cdao.getOne(id);
         Mesure mesure = new Mesure(date,valeur,capteur);
         try {
             mdao.save(mesure);

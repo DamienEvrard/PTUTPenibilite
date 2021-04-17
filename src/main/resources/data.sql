@@ -5,10 +5,10 @@ INSERT INTO PIECE (id, libelle) VALUES
 
 
 
-INSERT INTO TYPE_CAPTEUR (id, libelle,limite_Max,limite_Min) VALUES
-    (1, 'Température','-30','50'),
-    (2, 'Bruit','180','0'),
-    (3, 'Vibration','15000','0');
+INSERT INTO TYPE_CAPTEUR (id, libelle,limite_Max,limite_Min,unite) VALUES
+    (1, 'Température','50','-30','°C'),
+    (2, 'Bruit','180','0','dB'),
+    (3, 'Vibration','15000','0','m/s²');
 
 
 

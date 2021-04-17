@@ -3,9 +3,7 @@ package com.ptut.penibilite.daos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.ptut.penibilite.entities.Piece;
-import com.ptut.penibilite.entities.Mesure;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 public interface PieceRepository extends JpaRepository<Piece, Integer>{

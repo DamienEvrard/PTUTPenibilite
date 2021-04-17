@@ -10,9 +10,9 @@ public class Piece {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull @Column(unique = true)
+    @NonNull @Column(unique = true, nullable = false)
     private String libelle;
     
-    @OneToMany(mappedBy="salle") 
+    @OneToMany(mappedBy="salle")
     private List<Capteur> capteurs;
 }

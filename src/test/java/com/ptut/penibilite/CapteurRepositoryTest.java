@@ -12,12 +12,10 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Log4j2
@@ -40,7 +38,7 @@ public class CapteurRepositoryTest {
     @Test
     public void capteurDansPieceEtType() {
         Piece salle = new Piece("salle1");
-        TypeCapteur tCapteur = new TypeCapteur("Type1");
+        TypeCapteur tCapteur = new TypeCapteur("Type1","unite1");
         Capteur capteur = new Capteur("capteur1", 120, salle, tCapteur);
         assertEquals(salle.getId(), capteur.getSalle().getId());
         assertEquals(tCapteur.getId(), capteur.getType().getId());
@@ -49,7 +47,7 @@ public class CapteurRepositoryTest {
     @Test
     public void capteurEnregistre() {
         Piece salle = new Piece("salle1");
-        TypeCapteur tCapteur = new TypeCapteur("Type1");
+        TypeCapteur tCapteur = new TypeCapteur("type1","unite1");
         pdao.save(salle);
         tdao.save(tCapteur);
 
@@ -66,11 +64,7 @@ public class CapteurRepositoryTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime d2 = LocalDateTime.parse(d, formatter);
 
-        Optional<Capteur> c = cdao.findById(1);
-        Capteur capteur = new Capteur();
-        capteur.setId(c.get().getId());
-        capteur.setLibelle(c.get().getLibelle());
-        capteur.setSalle(c.get().getSalle());
+        Capteur capteur = cdao.getOne(1);
 
         Mesure m1 = new Mesure(d1,45,capteur);
         Mesure m2 = new Mesure(d2,12,capteur);
@@ -100,7 +94,7 @@ public class CapteurRepositoryTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime d2 = LocalDateTime.parse(d, formatter);
         Piece salle = new Piece("salle1");
-        TypeCapteur tCapteur = new TypeCapteur("Type1");
+        TypeCapteur tCapteur = new TypeCapteur("Type1","unite1");
         Capteur capteur = new Capteur("capteur1", 120, salle, tCapteur);
         Mesure m1 = new Mesure(d1,45,capteur);
         Mesure m2 = new Mesure(d2,12,capteur);

@@ -9,12 +9,15 @@ public class TypeCapteur {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+    @NonNull @Column(unique = true, nullable = false)
     private String libelle;
     
     private float limiteMax;
     
     private float limiteMin;
+
+    @NonNull @Column(unique = true, nullable = false)
+    private String unite;
     
     @OneToMany(mappedBy="type")
     private List<Capteur> capteurs;

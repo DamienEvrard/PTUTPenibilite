@@ -10,12 +10,12 @@ public class Mesure {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull
+    @NonNull @Column(nullable = false)
     private LocalDateTime date;
     
-    @NonNull
+    @NonNull @Column(nullable = false)
     private float valeur;
     
-    @ManyToOne @NonNull
+    @ManyToOne @NonNull @Column(nullable = false)
     Capteur capteur;
 }

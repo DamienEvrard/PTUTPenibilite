@@ -9,17 +9,19 @@ public class Capteur {
     
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+
+    @NonNull @Column(unique = true, nullable = false)
     private String libelle;
-    @NonNull
+
+    @NonNull @Column(nullable = false)
     private int frequenceMesure;
 
     @ToString.Exclude
-    @ManyToOne @NonNull
+    @ManyToOne @NonNull @Column(nullable = false)
     private Piece salle;
 
     @ToString.Exclude
-    @ManyToOne @NonNull
+    @ManyToOne @NonNull @Column(nullable = false)
     private TypeCapteur type;
 
     @ToString.Exclude
