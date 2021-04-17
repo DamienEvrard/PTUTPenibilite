@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modifié type [[${type.libelle}]]</title>
+    <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}" >
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+
+<div class="container-scroller">
+    <!-- NAVBAR -->
+    <div th:replace="navbar :: content"></div>
+    <!-- END NAVBAR -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- SIDEBAR -->
+        <div th:replace="sidebar :: content"></div>
+        <!-- END SIDEBAR -->
+        <div class="main-panel">
+            <!-- PAGE CONTENT -->
+            <div class="content-wrapper">
+                <div class="border-bottom row mb-4">
+                    <h1>Modifié le type : [[${type.libelle}]]</h1>
+                </div>
+                <p th:text="${message}"></p>
+
+                <div class="row">
+                    <!-- FORM ADD -->
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Modifié type [[${type.libelle}]]</h4>
+                                <form class="forms-sample" th:object="${typeC}" method="POST" th:action="@{/type/modify/save/{id}(id = ${type.id})}">
+                                    <div class="form-group row">
+                                        <label for="addTypeCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addTypeCapteurLibelle" th:placeholder="${type.libelle}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addTypeCapteurMin" class="col-sm-3 col-form-label">Limite minimal</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{limiteMin}" type="number" class="form-control" id="addTypeCapteurMin" th:value="${type.limiteMin}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addTypeCapteurMax" class="col-sm-3 col-form-label">Limite maximal</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{limiteMax}" type="number" class="form-control" id="addTypeCapteurMax" th:value="${type.limiteMax}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addTypeCapteurUnite" class="col-sm-3 col-form-label">Unité de mesure</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="addTypeCapteurUnite" placeholder="°C">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END FORM ADD -->
+                    <!-- LIST SENSORS TYPE -->
+                    <div th:replace="listSensorType :: content"></div>
+                    <!-- END LIST SENSORS TYPE -->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT -->
+            <!-- FOOTER -->
+            <div th:replace="footer :: content"></div>
+            <!-- END FOOTER -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+</div>
+<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar -->
+<script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+<!-- Menu mobile -->
+<script th:src="@{/assets/js/off-canvas.js}"></script>
+<!-- Menu destock plié -->
+<script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Autres annimations-->
+<script th:src="@{/assets/js/misc.js}" ></script>
+</body>
+</html>

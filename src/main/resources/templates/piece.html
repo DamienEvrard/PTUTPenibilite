@@ -20,8 +20,10 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
-                <div class="border-bottom">
-                    <h1 th:text="${piece.libelle}"></h1>
+                <div class="border-bottom row">
+                    <h1 th:text="${piece.libelle}" class="col-md-6"></h1>
+                    <a class="btn btn-outline-primary" role="button" th:href="@{/piece/capteur/add(id=${piece.id})}">Ajouter un capteur</a>
+
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-4 stretch-card grid-margin" th:each="c: ${capteurs}">
@@ -31,7 +33,7 @@
                                 <h4 class="font-weight-normal mb-3" th:text="${c.libelle}"><i class="mdi mdi-chart-line mdi-24px float-right"></i>
                                 </h4>
                                 <h2 class="mb-5">$ 15,0000</h2>
-                                <h6 class="card-text">Dernier relevé</h6>
+                                <h6 class="card-text">[[${c.type.libelle}]] : Dernier relevé </h6>
                             </div>
                         </div>
                     </div>
