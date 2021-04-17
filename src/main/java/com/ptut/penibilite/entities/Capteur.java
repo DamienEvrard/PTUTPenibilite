@@ -10,7 +10,7 @@ public class Capteur {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull @Column(unique = true, nullable = false)
+    @NonNull @Column(nullable = false)
     private String libelle;
 
     @NonNull @Column(nullable = false)
