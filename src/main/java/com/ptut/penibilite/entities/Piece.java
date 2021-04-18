@@ -28,7 +28,9 @@ public class Piece {
     public List<String> getTypeCapteur(){
         List<String> listType = new ArrayList<>();
         for(Capteur c : this.getCapteurs()){
-            listType.add(c.getType().getLibelle());
+            if(!listType.contains(c.getType().getLibelle())) {
+                listType.add(c.getType().getLibelle());
+            }
         }
         return listType;
     }
