@@ -24,6 +24,28 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
+                <div class="page-header">
+                    <h1 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-home mdi-24px"></i>
+                </span> Dashboard
+                    </h1>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 stretch-card grid-margin" th:each="p,iterStat: ${pieces}">
+                        <div th:class="${iterStat.even}? 'card card-img-holder text-white bg-gradient-info' : 'card card-img-holder text-white bg-gradient-success'">
+                            <div class="card-body">
+                                <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
+                                <h4 class="font-weight-normal mb-3">
+                                    <a th:href="@{/piece(id=${p.id})}" class="text-light">[[${p.libelle}]]</a>
+                                    <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5">[[${#lists.size(p.capteurs)}]] capteurs</h2>
+                                <p class="card-text"><span th:each="c:${p.capteurs}">[[${c.libelle}]] </span> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- END PAGE CONTENT -->
             <!-- FOOTER -->

@@ -20,14 +20,18 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
-                <div class="border-bottom row">
-                    <h1 th:text="${piece.libelle}" class="col-md-6"></h1>
+                <div class="page-header">
+                    <h1 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-home-map-marker mdi-24px"></i>
+                </span> [[${piece.libelle}]]
+                    </h1>
                     <a class="btn btn-outline-primary ml-3" role="button" th:href="@{/capteur/add(id=${piece.id})}">Capteurs <i class="mdi mdi-wrench ml-3"></i></a>
 
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-4 stretch-card grid-margin" th:each="c: ${capteurs}">
-                        <div class="card bg-gradient-danger card-img-holder text-white">
+                    <div class="col-md-4 stretch-card grid-margin" th:each="c,iterStat: ${capteurs}">
+                        <div th:class="${iterStat.even}? 'card card-img-holder text-white bg-gradient-primary' : 'card card-img-holder text-white bg-gradient-danger'">
                             <div class="card-body">
                                 <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
                                 <a class="mdi mdi-lead-pencil position-absolute text-light" th:href="@{/capteur/modify(id=${c.id})}" style="right: 10%"></a>
