@@ -36,11 +36,11 @@
                         <div th:class="${iterStat.even}? 'card card-img-holder text-white bg-gradient-info' : 'card card-img-holder text-white bg-gradient-success'">
                             <div class="card-body">
                                 <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
-                                <h4 class="font-weight-normal mb-3">
+                                <h2 class="font-weight-normal mb-3">
                                     <a th:href="@{/piece(id=${p.id})}" class="text-light">[[${p.libelle}]]</a>
                                     <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                                </h4>
-                                <h2 class="mb-5">[[${#lists.size(p.capteurs)}]] capteurs</h2>
+                                </h2>
+                                <h4 class="mb-5">[[${#lists.size(p.capteurs)}]] capteurs</h4>
                                 <p class="card-text"><span th:each="c:${p.capteurs}">[[${c.libelle}]] </span> </p>
                             </div>
                         </div>

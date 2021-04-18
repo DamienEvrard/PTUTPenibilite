@@ -65,7 +65,7 @@
                                     <tr th:each="piece: ${pieces}">
                                         <td th:text="${piece.libelle}"></td>
                                         <td class="text-center" th:text="${#lists.size(piece.capteurs)}"></td>
-                                        <td><a class="mdi mdi-eye" alt="voir" th:href="@{/piece(id=${piece.id})}"></a></td>
+                                        <td><a class="mdi mdi-eye text-danger" alt="voir" th:href="@{/piece(id=${piece.id})}"></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
