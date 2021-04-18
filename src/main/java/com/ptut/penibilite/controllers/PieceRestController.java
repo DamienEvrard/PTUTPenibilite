@@ -9,10 +9,7 @@ import com.ptut.penibilite.entities.Piece;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ import java.util.List;
  * @author damie
  */
 @RestController
-@RequestMapping(path = "/piece")
+@RequestMapping(path = "/api/piece")
 public class PieceRestController {
 
     @Autowired
@@ -56,5 +53,27 @@ public class PieceRestController {
         }
         model.addAttribute("donnees", json);
         return json;
+    }
+
+    /**
+     * Supprime une pièce
+     *
+     * @param id id de la pièce
+     * @return JSONObject  status = 0 || 1
+     */
+    @DeleteMapping(value = "delete")
+    public JSONObject deletePiece(@RequestParam("id")int id){
+
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        JSONObject rep = new JSONObject();
+        try{
+            pdao.deleteById(id);
+            rep.put("status", 0);
+        }catch (Exception e){
+            rep.put("status", 1);
+            rep.put("error",e);
+            return rep;
+        }
+        return rep;
     }
 }

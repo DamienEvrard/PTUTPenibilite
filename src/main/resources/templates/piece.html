@@ -40,7 +40,7 @@
                     <label class="sr-only" for="inlineForm">Name</label>
                     <input th:field="*{libelle}" type="text" class="form-control mb-2 mr-sm-2" id="inlineForm" th:placeholder="${piece.libelle}">
                     <button type="submit" class="btn btn-gradient-primary mb-2">Enregistrer</button>
-                    <button class="btn btn-danger mb-2 ml-3">Supprimer [[${piece.libelle}]]</button>
+                    <button type="button" th:onclick="'deletePiece('+${piece.id}+')'" class="btn btn-danger mb-2 ml-3">Supprimer [[${piece.libelle}]]</button>
                 </form>
                 <!-- END MODIFY PIECE -->
                 <div class="row mt-3">
@@ -75,6 +75,8 @@
 <script th:src="@{/assets/js/off-canvas.js}"></script>
 <!-- Menu destock plié -->
 <script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Action supprimer élément-->
+<script th:src="@{/assets/js/deleteAct.js}" ></script>
 <!--Autres annimations-->
 <script th:src="@{/assets/js/misc.js}" ></script>
 </body>
