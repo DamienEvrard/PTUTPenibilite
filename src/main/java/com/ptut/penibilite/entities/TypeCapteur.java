@@ -16,8 +16,14 @@ public class TypeCapteur {
 
     private float limiteMin;
 
-    @NonNull @Column(unique = true, nullable = false)
+    @NonNull @Column(nullable = false)
     private String unite;
+
+    @NonNull @Column(nullable = false)
+    private float seuilMax;
+
+    @NonNull @Column(nullable = false)
+    private float seuilMin;
 
     @ToString.Exclude
     @OneToMany(mappedBy="type")
