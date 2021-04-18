@@ -22,12 +22,15 @@
             <div class="content-wrapper">
                 <div class="page-header">
                     <h1 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                  <i class="mdi mdi-home-map-marker mdi-24px"></i>
-                </span> [[${piece.libelle}]]
+                        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                            <i class="mdi mdi-home-map-marker mdi-24px"></i>
+                        </span>
+                        [[${piece.libelle}]]
                     </h1>
+                </div>
+                <div class="row justify-content-end pr-4">
+                    <a class="btn btn-outline-danger" role="button" th:href="@{/piece/modify(id=${piece.id})}">Pièce <i class="mdi mdi-wrench ml-3"></i></a>
                     <a class="btn btn-outline-primary ml-3" role="button" th:href="@{/capteur/add(id=${piece.id})}">Capteurs <i class="mdi mdi-wrench ml-3"></i></a>
-
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-4 stretch-card grid-margin" th:each="c,iterStat: ${capteurs}">

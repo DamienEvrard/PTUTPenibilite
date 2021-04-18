@@ -37,8 +37,8 @@
                             <div class="card-body">
                                 <img th:src="@{/assets/images/circle.svg}" class="card-img-absolute" alt="circle-image" />
                                 <h2 class="font-weight-normal mb-3">
-                                    <a th:href="@{/piece(id=${p.id})}" class="text-light">[[${p.libelle}]]</a>
-                                    <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                                    [[${p.libelle}]]
+                                    <a th:href="@{/piece(id=${p.id})}" class="mdi mdi-eye mdi-24px position-absolute text-light" style="right: 6%"></a>
                                 </h2>
                                 <h4 class="mb-5">[[${#lists.size(p.capteurs)}]] capteurs</h4>
                                 <p class="card-text"><span th:each="c:${p.capteurs}">[[${c.libelle}]] </span> </p>
