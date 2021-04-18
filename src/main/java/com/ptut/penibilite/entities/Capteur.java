@@ -27,5 +27,9 @@ public class Capteur {
     @ToString.Exclude
     @OneToMany(mappedBy="capteur")
     List<Mesure> mesures;
+
+    private Float getLastMesure(){
+        return this.getMesures().get(this.getMesures().size()-1).getValeur();
+    }
     
 }

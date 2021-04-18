@@ -1,9 +1,6 @@
 package com.ptut.penibilite.controllers;
 
-import com.ptut.penibilite.daos.CapteurRepository;
 import com.ptut.penibilite.daos.PieceRepository;
-import com.ptut.penibilite.daos.TypeCapteurRepository;
-import com.ptut.penibilite.entities.Capteur;
 import com.ptut.penibilite.entities.Piece;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
