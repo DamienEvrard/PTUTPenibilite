@@ -20,10 +20,15 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
-                <div class="border-bottom row mb-4">
-                    <h1>Type de capteur</h1>
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                          <i class="mdi mdi-wrench"></i>
+                        </span>
+                        Type de capteur
+                    </h1>
                 </div>
-                <p th:text="${message}"></p>
+                <p id="msg" th:text="${message}"></p>
                 <div class="row">
                     <!-- FORM ADD -->
                     <div class="col-md-6 grid-margin stretch-card">
@@ -83,6 +88,8 @@
 <script th:src="@{/assets/js/off-canvas.js}"></script>
 <!-- Menu destock plié -->
 <script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Action supprimer élément-->
+<script th:src="@{/assets/js/deleteAct.js}" ></script>
 <!--Autres annimations-->
 <script th:src="@{/assets/js/misc.js}" ></script>
 </body>

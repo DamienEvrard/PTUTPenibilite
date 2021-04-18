@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>Modifié type [[${type.libelle}]]</title>
+    <title>Modifier [[${capteur.libelle}]]</title>
     <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}" >
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
@@ -25,41 +24,36 @@
                         <span class="page-title-icon bg-gradient-primary text-white mr-2">
                           <i class="mdi mdi-wrench"></i>
                         </span>
-                        Modifier le type : [[${type.libelle}]]
+                        [[${capteur.libelle}]] : <a class="text-danger text-lowercase ml-4" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a>
                     </h1>
                 </div>
-
                 <p id="msg" th:text="${message}"></p>
-
                 <div class="row">
                     <!-- FORM ADD -->
-                    <div class="col-md-6 grid-margin stretch-card">
+                    <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Modifié type [[${type.libelle}]]</h4>
-                                <form class="forms-sample" th:object="${typeC}" method="POST" th:action="@{/type/modify/save/{id}(id = ${type.id})}">
+                                <h4 class="card-title">Modifier le capteur [[${capteur.libelle}]]</h4>
+                                <form class="forms-sample" th:object="${setCapteur}" method="POST" th:action="@{/capteur/modify/save/{id}(id = ${capteur.id})}">
                                     <div class="form-group row">
-                                        <label for="addTypeCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
+                                        <label for="addCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{libelle}" type="text" class="form-control" id="addTypeCapteurLibelle" th:placeholder="${type.libelle}">
+                                            <input th:field="*{libelle}" type="text" class="form-control" id="addCapteurLibelle" th:placeholder="${capteur.libelle}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="addTypeCapteurMin" class="col-sm-3 col-form-label">Limite minimal</label>
+                                        <label for="addCapteurType" class="col-sm-3 col-form-label">Type</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{limiteMin}" type="number" class="form-control" id="addTypeCapteurMin" th:value="${type.limiteMin}">
+                                            <select class="form-control" name="type" id="addCapteurType">
+                                                <option th:each="tc: ${types}" th:value="${tc.id}">[[${tc.libelle}]]</option>
+                                                <option selected th:value="${capteur.type.id}">[[${capteur.type.libelle}]]</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="addTypeCapteurMax" class="col-sm-3 col-form-label">Limite maximal</label>
+                                        <label for="addCapteurFrequence" class="col-sm-3 col-form-label">Fréquence (min)</label>
                                         <div class="col-sm-9">
-                                            <input th:field="*{limiteMax}" type="number" class="form-control" id="addTypeCapteurMax" th:value="${type.limiteMax}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="addTypeCapteurUnite" class="col-sm-3 col-form-label">Unité de mesure</label>
-                                        <div class="col-sm-9">
-                                            <input th:field="*{unite}" type="text" class="form-control" id="addTypeCapteurUnite" th:placeholder="${type.unite}">
+                                            <input th:field="*{frequenceMesure}" type="number" min="1" class="form-control" id="addCapteurFrequence">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Envoyer</button>
@@ -69,9 +63,9 @@
                         </div>
                     </div>
                     <!-- END FORM ADD -->
-                    <!-- LIST SENSORS TYPE -->
-                    <div th:replace="listSensorType :: content"></div>
-                    <!-- END LIST SENSORS TYPE -->
+                    <!-- LIST SENSORS  -->
+                    <div th:replace="listSensor :: content"></div>
+                    <!-- END LIST SENSORS  -->
                 </div>
             </div>
             <!-- END PAGE CONTENT -->

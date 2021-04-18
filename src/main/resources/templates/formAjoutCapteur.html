@@ -20,17 +20,22 @@
         <div class="main-panel">
             <!-- PAGE CONTENT -->
             <div class="content-wrapper">
-                <div class="border-bottom row">
-                    <h1 class="col-md-6"><a class="text-dark" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a></h1>
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                          <i class="mdi mdi-wrench"></i>
+                        </span>
+                        Capteurs : <a class="text-danger text-lowercase ml-4" th:href="@{/piece(id=${piece.id})}">[[${piece.libelle}]]</a>
+                    </h1>
                 </div>
-                <p th:text="${message}"></p>
+                <p id="msg" th:text="${message}"></p>
                 <div class="row">
                     <!-- FORM ADD -->
-                    <div class="col-md-6 grid-margin stretch-card">
+                    <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Ajouter un capteur</h4>
-                                <form class="forms-sample" th:object="${newCapteur}" method="POST" th:action="@{/piece/capteur/save(salle=${piece.id})}">
+                                <form class="forms-sample" th:object="${newCapteur}" method="POST" th:action="@{/capteur/save(salle=${piece.id})}">
                                     <div class="form-group row">
                                         <label for="addCapteurLibelle" class="col-sm-3 col-form-label">Libellé</label>
                                         <div class="col-sm-9">
@@ -59,31 +64,7 @@
                     </div>
                     <!-- END FORM ADD -->
                     <!-- LIST SENSORS  -->
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Liste des capteurs</h4>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Libelle</th>
-                                        <th>Type</th>
-                                        <th>Fréquence</th>
-                                        <th>Intervale de mesure</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="c: ${capteurs}">
-                                        <td th:text="${c.libelle}"></td>
-                                        <td th:text="${c.type.libelle}"></td>
-                                        <td>[[${c.frequenceMesure}]] min</td>
-                                        <td> [[${c.type.limiteMin}]] à [[${c.type.limiteMax}]] [[${c.type.unite}]]</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <div th:replace="listSensor :: content"></div>
                     <!-- END LIST SENSORS  -->
                 </div>
             </div>
@@ -103,6 +84,8 @@
 <script th:src="@{/assets/js/off-canvas.js}"></script>
 <!-- Menu destock plié -->
 <script th:src="@{/assets/js/hoverable-collapse.js}"></script>
+<!--Action supprimer élément-->
+<script th:src="@{/assets/js/deleteAct.js}" ></script>
 <!--Autres annimations-->
 <script th:src="@{/assets/js/misc.js}" ></script>
 </body>
