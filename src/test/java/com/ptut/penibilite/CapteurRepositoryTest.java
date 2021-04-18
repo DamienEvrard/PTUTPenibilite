@@ -89,7 +89,7 @@ public class CapteurRepositoryTest {
 
 
     @Test
-    public void lastMesureCapteur() {
+    public void lastMesureCapteurDAO() {
         LocalDateTime d1 = LocalDateTime.now();
         String d = "2021-03-28 12:30:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -104,7 +104,7 @@ public class CapteurRepositoryTest {
         cdao.save(capteur);
         mdao.save(m1);
         mdao.save(m2);
-        int lastMesure = cdao.getLastMesure(capteur.getId(),LocalDateTime.now());
+        Float lastMesure = cdao.getLastMesure(capteur.getId(),LocalDateTime.now());
         assertEquals(lastMesure,m1.getValeur());
     }
 }
