@@ -1,29 +1,42 @@
-var ChartColor = ["#5D62B4", "#54C3BE", "#EF726F", "#F9C446", "rgb(93.0, 98.0, 180.0)", "#21B7EC", "#04BCCC"];
-var primaryColor = getComputedStyle(document.body).getPropertyValue('--primary');
-var secondaryColor = getComputedStyle(document.body).getPropertyValue('--secondary');
-var successColor = getComputedStyle(document.body).getPropertyValue('--success');
-var warningColor = getComputedStyle(document.body).getPropertyValue('--warning');
-var dangerColor = getComputedStyle(document.body).getPropertyValue('--danger');
-var infoColor = getComputedStyle(document.body).getPropertyValue('--info');
-var darkColor = getComputedStyle(document.body).getPropertyValue('--dark');
-var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
+let ChartColor = ["#5D62B4", "#54C3BE", "#EF726F", "#F9C446", "rgb(93.0, 98.0, 180.0)", "#21B7EC", "#04BCCC"];
+let primaryColor = getComputedStyle(document.body).getPropertyValue('--primary');
+let secondaryColor = getComputedStyle(document.body).getPropertyValue('--secondary');
+let successColor = getComputedStyle(document.body).getPropertyValue('--success');
+let warningColor = getComputedStyle(document.body).getPropertyValue('--warning');
+let dangerColor = getComputedStyle(document.body).getPropertyValue('--danger');
+let infoColor = getComputedStyle(document.body).getPropertyValue('--info');
+let darkColor = getComputedStyle(document.body).getPropertyValue('--dark');
+let lightColor = getComputedStyle(document.body).getPropertyValue('--light');
 
 (function($) {
   'use strict';
   $(function() {
-    var body = $('body');
-    var contentWrapper = $('.content-wrapper');
-    var scroller = $('.container-scroller');
-    var footer = $('.footer');
-    var sidebar = $('.sidebar');
-    var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
+    let body = $('body');
+    let contentWrapper = $('.content-wrapper');
+    let scroller = $('.container-scroller');
+    let footer = $('.footer');
+    let sidebar = $('.sidebar');
+    let formModifyPiece = $('#modifyPiece');
+    let boolFormModifyPiece = false;
 
+
+    formModifyPiece.css('display','none');
+
+    $('#btnPieceModify').click(function () {
+      console.log("click",boolFormModifyPiece);
+      if(boolFormModifyPiece){
+        formModifyPiece.css('display','none');
+      }else {
+        formModifyPiece.removeAttr('style');
+      }
+      boolFormModifyPiece = !boolFormModifyPiece;
+    });
 
     //Close other submenu in sidebar on opening any
-
     sidebar.on('show.bs.collapse', '.collapse', function() {
       sidebar.find('.collapse.show').collapse('hide');
     });
+
 
 
     //Change sidebar and content-wrapper height

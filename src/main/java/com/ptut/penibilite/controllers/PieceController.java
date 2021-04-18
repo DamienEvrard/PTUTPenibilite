@@ -23,7 +23,7 @@ public class PieceController {
     private PieceRepository pieceRepository;
 
     @GetMapping("")
-    public String getPiece(Model model, @RequestParam("id") Piece piece){
+    public String getPiece(Model model, @RequestParam("id") Piece piece,@ModelAttribute("upDatePiece") Piece p){
         model.addAttribute("pieces", pieceRepository.findAll());
         model.addAttribute("piece", piece);
         model.addAttribute("capteurs",piece.getCapteurs());
@@ -31,7 +31,7 @@ public class PieceController {
     }
 
     @GetMapping("add")
-    public String getPiece(@ModelAttribute("piece") Piece piece, Model model){
+    public String getAddPiece(@ModelAttribute("piece") Piece piece, Model model){
         model.addAttribute("pieces", pieceRepository.findAll());
         return "formAjoutPiece";
     }
@@ -54,5 +54,36 @@ public class PieceController {
         }
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:add";
+    }
+
+    /**
+     * Appelé par 'piece.html', méthode POST
+     *
+     * @param piece Une piece initialisée avec les valeurs saisies dans le formulaire
+     * @param redirectInfo pour transmettre des paramètres lors de la redirection
+     * @param id id de la pièce à modifier
+     * @return une redirection vers piece.html
+     */
+    @PostMapping(path = "modify")
+    public String modifyPiece(Piece piece, RedirectAttributes redirectInfo,@RequestParam int id) {
+        String message;
+        message = "";
+        int cpt = 0;
+        Piece pieceToUpDate = pieceRepository.getOne(id);
+
+        if (!piece.getLibelle().isEmpty() && piece.getLibelle() != pieceToUpDate.getLibelle()){
+            pieceToUpDate.setLibelle(piece.getLibelle());
+            cpt++;
+        }
+
+        if (cpt>0){
+            try {
+                pieceRepository.save(pieceToUpDate);
+            } catch (DataIntegrityViolationException e) {
+                message = "Échec de de la modification.";
+            }
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:/piece?id="+id;
     }
 }

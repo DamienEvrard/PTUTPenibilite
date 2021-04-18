@@ -28,10 +28,21 @@
                         [[${piece.libelle}]]
                     </h1>
                 </div>
+                <p id="msg" th:text="${message}"></p>
+                <!-- BTN REGLAGE -->
                 <div class="row justify-content-end pr-4">
-                    <a class="btn btn-outline-danger" role="button" th:href="@{/piece/modify(id=${piece.id})}">Pièce <i class="mdi mdi-wrench ml-3"></i></a>
+                    <button id="btnPieceModify" class="btn btn-outline-danger" type="button">Pièce <i class="mdi mdi-wrench ml-3"></i></button>
                     <a class="btn btn-outline-primary ml-3" role="button" th:href="@{/capteur/add(id=${piece.id})}">Capteurs <i class="mdi mdi-wrench ml-3"></i></a>
                 </div>
+                <!-- END BTN REGLAGE -->
+                <!-- FORM MODIFY PIECE -->
+                <form id="modifyPiece" class="form-inline mb-5 mt-5" th:object="${upDatePiece}" method="POST" th:action="@{/piece/modify(id=${piece.id})}">
+                    <label class="sr-only" for="inlineForm">Name</label>
+                    <input th:field="*{libelle}" type="text" class="form-control mb-2 mr-sm-2" id="inlineForm" th:placeholder="${piece.libelle}">
+                    <button type="submit" class="btn btn-gradient-primary mb-2">Enregistrer</button>
+                    <button class="btn btn-danger mb-2 ml-3">Supprimer [[${piece.libelle}]]</button>
+                </form>
+                <!-- END MODIFY PIECE -->
                 <div class="row mt-3">
                     <div class="col-md-4 stretch-card grid-margin" th:each="c,iterStat: ${capteurs}">
                         <div th:class="${iterStat.even}? 'card card-img-holder text-white bg-gradient-primary' : 'card card-img-holder text-white bg-gradient-danger'">
@@ -41,7 +52,7 @@
                                 <h4 class="font-weight-normal mb-3">
                                     [[${c.libelle}]]
                                 </h4>
-                                <h2 class="mb-5">${c.getLastMesure()} [[${c.type.unite}]]</h2>
+                                <h2 class="mb-5"> ${c.lastMesure} [[${c.type.unite}]]</h2>
                                 <h6 class="card-text">[[${c.type.libelle}]] : Dernier relevé </h6>
                             </div>
                         </div>
