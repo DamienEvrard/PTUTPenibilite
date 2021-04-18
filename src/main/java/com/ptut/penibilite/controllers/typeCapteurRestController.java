@@ -1,6 +1,10 @@
 package com.ptut.penibilite.controllers;
 
+import com.ptut.penibilite.daos.PieceRepository;
 import com.ptut.penibilite.daos.TypeCapteurRepository;
+import com.ptut.penibilite.entities.Capteur;
+import com.ptut.penibilite.entities.Mesure;
+import com.ptut.penibilite.entities.Piece;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,9 @@ public class typeCapteurRestController {
 
     @Autowired
     private TypeCapteurRepository typeCapteurRepository;
+
+    @Autowired
+    private PieceRepository pdao;
 
     /**
      * Supprime un type de capteur
@@ -34,5 +41,30 @@ public class typeCapteurRestController {
             return rep;
         }
         return rep;
+    }
+
+    /**
+     *
+     * @param id id de la piece
+     * @param type type de capteur
+     * @return le nombre de mesures depassant les seuils en format Json
+     */
+    @GetMapping(value = "depassement")
+    public JSONObject depassementSeuil(@RequestParam("id")int id, @RequestParam("type") String type){
+        JSONObject json = new JSONObject();
+        Piece piece = pdao.getOne(id);
+        int compteur=0;
+        for(Capteur c : piece.getCapteurs()){
+            System.out.println(c.getType().getLibelle()+" | "+type);
+            if(c.getType().getLibelle().equals(type)){
+                for(Mesure m : c.getMesures()){
+                    if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())){
+                        compteur++;
+                    }
+                }
+            }
+        }
+        json.put("depassement",compteur);
+        return json;
     }
 }

@@ -29,7 +29,7 @@ INSERT INTO CAPTEUR (id, libelle,frequence_Mesure,salle_id,type_id) VALUES
 
 INSERT INTO MESURE (id,date,valeur,capteur_id) VALUES  
     (01, TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'18',1),
-    (02,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'20',1),
+    (02,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'35',1),
     (03,  TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'22',4),
     (04,  TO_DATE('2021-03-28 12:30:00','YYYY-MM-DD HH24:MI:SS'),'24',4),
     (05,  TO_DATE('2021-03-29 8:30:00','YYYY-MM-DD HH24:MI:SS'),'16',7),
