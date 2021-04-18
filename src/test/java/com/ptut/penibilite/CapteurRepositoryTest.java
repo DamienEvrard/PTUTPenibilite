@@ -57,8 +57,9 @@ public class CapteurRepositoryTest {
         assertEquals(10, c.size());
     }
 
+
     @Test
-    public void getMesures() {
+    public void getMesuresDate() {
         LocalDateTime d1 = LocalDateTime.now();
         String d = "2022-03-28 12:30:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -83,7 +84,7 @@ public class CapteurRepositoryTest {
         LocalDateTime d3 = LocalDateTime.parse(date, formatter);
 
         assertEquals(12, listC.get(0).getMesures().get(listC.get(0).getMesures().size()-1).getValeur());
-        assertEquals(12,cdao.getMesure(capteur.getId(), d3)[0]);
+        assertEquals(12,cdao.getMesureDate(capteur.getId(), d3)[0]);
     }
 
 

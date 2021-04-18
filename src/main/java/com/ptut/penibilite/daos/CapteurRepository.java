@@ -2,12 +2,12 @@
 package com.ptut.penibilite.daos;
 import com.ptut.penibilite.entities.Capteur;
 import java.time.LocalDateTime;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
 public interface CapteurRepository extends JpaRepository<Capteur, Integer>{
-    
 
     /**
      * @param id l'id du capteur
@@ -15,7 +15,7 @@ public interface CapteurRepository extends JpaRepository<Capteur, Integer>{
      * @return le tableau des mesures relevées à partir de la date 
      */
     @Query("SELECT M.valeur from Mesure M where M.capteur.id = :id and M.date >= :date")
-    int[] getMesure(int id, LocalDateTime date);
+    int[] getMesureDate(int id, LocalDateTime date);
 
     /**
      * @param id l'id du capteur
