@@ -1,7 +1,5 @@
 package com.ptut.penibilite.controllers;
 
-import com.ptut.penibilite.daos.CapteurRepository;
-import com.ptut.penibilite.daos.MesureRepository;
 import com.ptut.penibilite.daos.PieceRepository;
 import com.ptut.penibilite.entities.Capteur;
 import com.ptut.penibilite.entities.Mesure;
@@ -76,4 +74,18 @@ public class PieceRestController {
         }
         return rep;
     }
+
+    @GetMapping("getTypeCapteur")
+    public JSONObject getTypeCapteur(Model model, @RequestParam("id") int id){
+        JSONObject json = new JSONObject();
+        Piece piece = pdao.getOne(id);
+        List<String> listType = new ArrayList<>();
+        for(Capteur c : piece.getCapteurs()){
+            listType.add(c.getType().getLibelle());
+        }
+        json.put("types", listType);
+        model.addAttribute("types", json);
+        return json;
+    }
+
 }
