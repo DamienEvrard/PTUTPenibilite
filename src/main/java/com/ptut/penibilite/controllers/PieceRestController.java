@@ -29,6 +29,7 @@ public class PieceRestController {
     public JSONObject getDonnees(Model model, @RequestParam("id") int id){
         JSONObject json = new JSONObject();
         Piece piece = pdao.getOne(id);
+        int cpt =0;
         for(Capteur c : piece.getCapteurs()){
             List<Mesure> listMesure;
             listMesure = c.getMesures();
@@ -42,12 +43,15 @@ public class PieceRestController {
             String unite = c.getType().getUnite();
             Float seuilMax = c.getType().getSeuilMax();
             Float seuilMin = c.getType().getSeuilMin();
+            donnees.put("libelle",c.getLibelle());
+            donnees.put("type",c.getType().getLibelle());
             donnees.put("dates",date);
             donnees.put("valeurs",valeur);
             donnees.put("unite",unite);
             donnees.put("seuilMax",seuilMax);
             donnees.put("seuilMin",seuilMin);
-            json.put(c.getLibelle(),donnees);
+            json.put(String.valueOf(cpt),donnees);
+            cpt++;
         }
         model.addAttribute("donnees", json);
         return json;
@@ -61,8 +65,6 @@ public class PieceRestController {
      */
     @DeleteMapping(value = "delete")
     public JSONObject deletePiece(@RequestParam("id")int id){
-
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         JSONObject rep = new JSONObject();
         try{
             pdao.deleteById(id);

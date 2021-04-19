@@ -55,6 +55,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="addTypeSeuilMin" class="col-sm-3 col-form-label">Seuil pénibilité minimal</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{seuilMin}" type="number" class="form-control" id="addTypeSeuilMin" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="addTypeSeuilMax" class="col-sm-3 col-form-label">Seuil pénibilité maximal</label>
+                                        <div class="col-sm-9">
+                                            <input th:field="*{seuilMax}" type="number" class="form-control" id="addTypeSeuilMax" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="addTypeCapteurUnite" class="col-sm-3 col-form-label">Unité de mesure</label>
                                         <div class="col-sm-9">
                                             <input type="text" th:field="*{unite}" class="form-control" id="addTypeCapteurUnite" placeholder="°C" required>

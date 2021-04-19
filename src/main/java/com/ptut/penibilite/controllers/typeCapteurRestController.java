@@ -46,25 +46,26 @@ public class typeCapteurRestController {
     /**
      *
      * @param id id de la piece
-     * @param type type de capteur
      * @return le nombre de mesures depassant les seuils en format Json
      */
     @GetMapping(value = "depassement")
-    public JSONObject depassementSeuil(@RequestParam("id")int id, @RequestParam("type") String type){
+    public JSONObject depassementSeuil(@RequestParam("id")int id){
         JSONObject json = new JSONObject();
         Piece piece = pdao.getOne(id);
-        int compteur=0;
+        int cpt=0;
         for(Capteur c : piece.getCapteurs()){
-            System.out.println(c.getType().getLibelle()+" | "+type);
-            if(c.getType().getLibelle().equals(type)){
-                for(Mesure m : c.getMesures()){
-                    if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())){
-                        compteur++;
-                    }
+            JSONObject donnees = new JSONObject();
+            int depassement=0;
+            for(Mesure m : c.getMesures()){
+                if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())){
+                    depassement++;
                 }
             }
+            donnees.put("libelle",c.getLibelle());
+            donnees.put("depassement",depassement);
+            json.put(String.valueOf(cpt),donnees);
+            cpt++;
         }
-        json.put("depassement",compteur);
         return json;
     }
 }

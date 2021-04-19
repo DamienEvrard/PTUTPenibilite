@@ -15,7 +15,7 @@
                     <th>Libelle</th>
                     <th>Type</th>
                     <th>Fréquence</th>
-                    <th>Intervale de mesure</th>
+                    <th>Seuil de pénibilité</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,7 @@
                     <td th:text="${c.libelle}"></td>
                     <td th:text="${c.type.libelle}"></td>
                     <td>[[${c.frequenceMesure}]] min</td>
-                    <td> [[${c.type.limiteMin}]] à [[${c.type.limiteMax}]] [[${c.type.unite}]]</td>
+                    <td> [[${c.type.seuilMin}]] et [[${c.type.seuilMax}]] [[${c.type.unite}]]</td>
                     <td><a class="mdi mdi-lead-pencil text-danger" th:href="@{/capteur/modify(id=${c.id})}"></a> </td>
                     <td><a class="mdi mdi-delete-forever text-danger"  th:onclick="'deleteCapteur('+${c.id}+','+${piece.id}+')'"></a> </td>
                 </tr>
