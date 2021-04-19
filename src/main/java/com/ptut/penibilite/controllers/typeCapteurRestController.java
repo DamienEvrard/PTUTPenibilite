@@ -51,16 +51,20 @@ public class typeCapteurRestController {
     @GetMapping(value = "depassement")
     public JSONObject depassementSeuil(@RequestParam("id")int id){
         JSONObject json = new JSONObject();
+        JSONObject donnees = new JSONObject();
         Piece piece = pdao.getOne(id);
-        int compteur=0;
+        int cpt=0;
         for(Capteur c : piece.getCapteurs()){
+            int compteur=0;
             for(Mesure m : c.getMesures()){
                 if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())){
                     compteur++;
                 }
             }
-            json.put("libelle",c.getLibelle());
-            json.put("depassement",compteur);
+            donnees.put("libelle",c.getLibelle());
+            donnees.put("depassement",compteur);
+            json.put(String.valueOf(cpt),donnees);
+            cpt++;
         }
         return json;
     }
