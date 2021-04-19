@@ -29,7 +29,10 @@ public class Capteur {
     List<Mesure> mesures;
 
     public Float getLastMesure(){
-        return this.getMesures().get(this.getMesures().size()-1).getValeur();
+        if(this.getMesures().size() > 0) {
+            return this.getMesures().get(this.getMesures().size() - 1).getValeur();
+        }
+        return new Float(0);
     }
     
 }
