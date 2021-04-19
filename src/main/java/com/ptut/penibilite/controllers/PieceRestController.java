@@ -65,8 +65,6 @@ public class PieceRestController {
      */
     @DeleteMapping(value = "delete")
     public JSONObject deletePiece(@RequestParam("id")int id){
-
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         JSONObject rep = new JSONObject();
         try{
             pdao.deleteById(id);
