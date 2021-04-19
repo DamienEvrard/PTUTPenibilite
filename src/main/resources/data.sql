@@ -14,6 +14,8 @@ INSERT INTO TYPE_CAPTEUR (id, libelle,limite_Max,limite_Min,unite,seuil_Max,seui
 
 INSERT INTO CAPTEUR (id, libelle,frequence_Mesure,salle_id,type_id) VALUES
     (1, 'Thermomètre','60',1,1),
+    (10, 'Thermomètre porte','60',1,1),
+    (11, 'Thermomètre placard','60',1,1),
     (2, 'Dosimètre','120',1,2),
     (3, 'Vibromètre','420',1,3),
 
@@ -30,6 +32,13 @@ INSERT INTO CAPTEUR (id, libelle,frequence_Mesure,salle_id,type_id) VALUES
 INSERT INTO MESURE (id,date,valeur,capteur_id) VALUES  
     (01, TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'18',1),
     (02,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'35',1),
+    (21,  TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'25',1),
+    (22,  TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'15',10),
+    (23,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
+    (24,  TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
+    (25,  TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'25',11),
+    (26,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'5',11),
+    (27,  TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'35',11),
     (03,  TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'22',4),
     (04,  TO_DATE('2021-03-28 12:30:00','YYYY-MM-DD HH24:MI:SS'),'24',4),
     (05,  TO_DATE('2021-03-29 8:30:00','YYYY-MM-DD HH24:MI:SS'),'16',7),
