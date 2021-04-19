@@ -1,5 +1,6 @@
 let url = 'https://ptutpenibilite.herokuapp.com/';
 
+
 function deleteType(id) {
     if (confirm('êtes-vous sûr de vouloir supprimer ce type ?')){
 
