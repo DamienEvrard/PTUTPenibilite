@@ -98,6 +98,14 @@ public class typeCapteurController {
             typeToUpDate.setLimiteMax(type.getLimiteMax());
             cpt++;
         }
+        if (type.getSeuilMin() != typeToUpDate.getSeuilMin()){
+            typeToUpDate.setSeuilMin(type.getSeuilMin());
+            cpt++;
+        }
+        if (type.getSeuilMax() != typeToUpDate.getSeuilMax()){
+            typeToUpDate.setSeuilMax(type.getSeuilMax());
+            cpt++;
+        }
         if (!type.getUnite().isEmpty() && type.getUnite() != typeToUpDate.getUnite()){
             typeToUpDate.setUnite(type.getUnite());
             cpt++;
