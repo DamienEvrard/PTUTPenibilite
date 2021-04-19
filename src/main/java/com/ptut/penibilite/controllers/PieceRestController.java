@@ -44,6 +44,7 @@ public class PieceRestController {
             Float seuilMax = c.getType().getSeuilMax();
             Float seuilMin = c.getType().getSeuilMin();
             donnees.put("libelle",c.getLibelle());
+            donnees.put("type",c.getType().getLibelle());
             donnees.put("dates",date);
             donnees.put("valeurs",valeur);
             donnees.put("unite",unite);
