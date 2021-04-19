@@ -13,6 +13,48 @@ $('document').ready(function () {
         }).done(initGraphs);
     });
 
+    // Doughnut chart
+    $.get(url + 'api/type/depassement',{id : idPiece}).done((dataJson)=>{
+        console.log(dataJson);
+        let labels = [];
+        let dataCapteur = [];
+        let colors = [];
+
+        $.each(dataJson, function (key,capteur) {
+            labels.push(capteur.libelle);
+            dataCapteur.push(capteur.depassement);
+            colors.push('#'+ ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6));
+        });
+
+        let data = {
+            labels: labels,
+            datasets: [{
+                label: 'Taux de pénibilité',
+                data: dataCapteur,
+                backgroundColor: colors,
+                hoverOffset: 4
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        };
+
+        let config = {
+            type: 'doughnut',
+            data: data,
+            options: options
+        };
+
+        let doughnutChart = new Chart( $('#doughnutChart'), config);
+
+
+    });
+
     function initGraphs() {
 
         // Création d'un graphe par type de capteur
