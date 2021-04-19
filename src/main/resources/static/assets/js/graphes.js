@@ -1,5 +1,5 @@
 $('document').ready(function () {
-    let url = 'http://localhost:8080/';
+    let url = 'https://ptutpenibilite.herokuapp.com/';
     let idPiece =  window.location.href.split('=')[1];
     let typesDataAjax;
     let capteursDataAjax;
