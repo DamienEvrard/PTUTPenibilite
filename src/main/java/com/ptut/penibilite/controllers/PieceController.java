@@ -24,6 +24,7 @@ public class PieceController {
         model.addAttribute("pieces", pieceRepository.findAll());
         model.addAttribute("piece", piece);
         model.addAttribute("capteurs",piece.getCapteurs());
+        model.addAttribute("types",piece.getTypeCapteur());
         return "piece";
     }
 

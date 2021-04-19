@@ -43,6 +43,7 @@
                     <button type="button" th:onclick="'deletePiece('+${piece.id}+')'" class="btn btn-danger mb-2 ml-3">Supprimer [[${piece.libelle}]]</button>
                 </form>
                 <!-- END MODIFY PIECE -->
+                <!-- CARDS SENSOR -->
                 <div class="row mt-3">
                     <div class="col-md-4 stretch-card grid-margin" th:each="c,iterStat: ${capteurs}">
                         <div th:class="${iterStat.even}? 'card card-img-holder text-white bg-gradient-primary' : 'card card-img-holder text-white bg-gradient-danger'">
@@ -58,6 +59,20 @@
                         </div>
                     </div>
                 </div>
+                <!-- END CARDS SENSOR -->
+                <!-- CHARTS -->
+                <div class="row">
+                    <div class="col-lg-6 grid-margin stretch-card" th:each="t:${types}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Évolution : [[${t}]]</h4>
+                                <canvas th:id="'chart'+${t}" style="height:250px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CHARTS -->
+
             </div>
             <!-- END PAGE CONTENT -->
             <!-- FOOTER -->
@@ -69,14 +84,17 @@
     <!-- page-body-wrapper ends -->
 </div>
 </div>
-<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar -->
+<!-- Vendors -> bootstrap, JQuery, perfect-scrollbar, chartJS -->
 <script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+<script th:src="@{/assets/vendors/chart.js/chart.min.js}"></script>
 <!-- Menu mobile -->
 <script th:src="@{/assets/js/off-canvas.js}"></script>
 <!-- Menu destock plié -->
 <script th:src="@{/assets/js/hoverable-collapse.js}"></script>
 <!--Action supprimer élément-->
 <script th:src="@{/assets/js/deleteAct.js}" ></script>
+<!--Graphes-->
+<script th:src="@{/assets/js/graphes.js}" ></script>
 <!--Autres annimations-->
 <script th:src="@{/assets/js/misc.js}" ></script>
 </body>
