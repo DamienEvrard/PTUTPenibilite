@@ -83,7 +83,9 @@ public class PieceRestController {
         Piece piece = pdao.getOne(id);
         List<String> listType = new ArrayList<>();
         for(Capteur c : piece.getCapteurs()){
-            listType.add(c.getType().getLibelle());
+            if(!listType.contains(c.getType().getLibelle())) {
+                listType.add(c.getType().getLibelle());
+            }
         }
         json.put("types", listType);
         model.addAttribute("types", json);
