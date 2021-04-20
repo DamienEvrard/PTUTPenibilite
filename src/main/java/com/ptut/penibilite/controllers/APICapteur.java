@@ -90,7 +90,7 @@ public class APICapteur {
             return json;
         }catch (Exception e){
             response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-            json.put("frequence", 0);
+            json.put("frequence", null);
             return json;
         }
     }
