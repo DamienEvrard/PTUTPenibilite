@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping(path = "/capteur")
-public class capteurContoller {
+public class CapteurContoller {
 
     @Autowired
     private PieceRepository pieceRepository;
@@ -110,7 +110,6 @@ public class capteurContoller {
             capteurToUpDate.setType(capteur.getType());
             cpt++;
         }
-
 
         if (cpt>0){
             try {

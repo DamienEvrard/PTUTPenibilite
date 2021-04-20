@@ -17,7 +17,6 @@ $('document').ready(function () {
 
     // Doughnut chart
     function initDoughnutChart(dataJson) {
-        console.log(dataJson);
         let labels = [];
         let dataCapteur = [];
         let colors = [];

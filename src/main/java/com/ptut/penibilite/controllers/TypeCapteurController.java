@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping(path = "/type")
-public class typeCapteurController {
+public class TypeCapteurController {
 
     @Autowired
     private PieceRepository pieceRepository;
