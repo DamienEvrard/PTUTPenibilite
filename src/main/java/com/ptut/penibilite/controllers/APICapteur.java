@@ -54,8 +54,8 @@ public class APICapteur {
         try {
             TypeCapteur type = tdao.getOne(cdao.getOne(id).getType().getId());
             if(valeur> type.getLimiteMax() || valeur < type.getLimiteMin()){
-                json.put("status", 1);
-                json.put("message", HttpStatus.BAD_REQUEST);
+                json.put("status", HttpStatus.BAD_REQUEST);
+                json.put("message", "valeur erronée");
                 return json;
             }
             LocalDateTime date = LocalDateTime.now();
