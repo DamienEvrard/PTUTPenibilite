@@ -93,6 +93,11 @@ public class PieceRestController {
         return rep;
     }
 
+    /**
+     *
+     * @param id id de la piece
+     * @return JSONObject contenant la liste des type de capteur present sans doublon
+     */
     @GetMapping("getTypeCapteur")
     public JSONObject getTypeCapteur(Model model, @RequestParam("id") int id){
         JSONObject json = new JSONObject();
