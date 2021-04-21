@@ -63,7 +63,7 @@ public class TypeCapteurRestController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
             LocalDateTime dMin =LocalDateTime.parse(dateMin+ " 00:00:00", formatter);;
-            LocalDateTime dMax =LocalDateTime.parse(dateMax+ " 00:00:00", formatter);;
+            LocalDateTime dMax =LocalDateTime.parse(dateMax+ " 23:59:59", formatter);;
 
             for(Mesure m : c.getMesures()){
                 if((m.getDate().isAfter(dMin)) && (m.getDate().isBefore(dMax))) {
