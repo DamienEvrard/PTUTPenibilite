@@ -25,6 +25,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  *
  * @author damie
@@ -39,33 +41,33 @@ public class APICapteur {
     CapteurRepository cdao;
     @Autowired
     TypeCapteurRepository tdao;
-    
+
     /**
      * Enregistre une mesure
      *
      * @param id id du capteur emetteur
      * @param valeur valeur de la mesure
-     * @return JSONObject contenant le status de la requete et un message
+     * @return JSONObject contenant un message en fonction du resultat de l'operation
      */
     @GetMapping(value = "/ajout", produces = {"application/json"})
-    @ResponseStatus(HttpStatus.OK)
-    public JSONObject ajoutMesure(@RequestParam("id") int id, @RequestParam("valeur") float valeur) {
+    public JSONObject ajoutMesure(@RequestParam("id") int id, @RequestParam("valeur") float valeur, HttpServletResponse response ) {
         JSONObject json = new JSONObject();
         try {
             TypeCapteur type = tdao.getOne(cdao.getOne(id).getType().getId());
             if(valeur> type.getLimiteMax() || valeur < type.getLimiteMin()){
-                json.put("status", 1);
-                json.put("message", HttpStatus.BAD_REQUEST);
+                response.setStatus(HttpStatus.BAD_REQUEST.value());
+                json.put("message", "valeur erronée");
                 return json;
             }
             LocalDateTime date = LocalDateTime.now();
             Capteur capteur = cdao.getOne(id);
             Mesure mesure = new Mesure(date,valeur,capteur);
             mdao.save(mesure);
-            json.put("status", HttpStatus.OK);
+            response.setStatus(HttpStatus.OK.value());
+            json.put("message", "OK");
             return json;
         }catch (Exception e){
-            json.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
             json.put("message", "erreur d'enregistrement");
             return json;
         }
@@ -75,20 +77,20 @@ public class APICapteur {
      * donne la frequence de mesure
      *
      * @param id id du capteur
-     * @return JSONObject contenant le status de la requete et la frequence
+     * @return JSONObject contenant la frequence
      */
     @GetMapping(value = "/frequence", produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
-    public JSONObject getFrequenceMesure(@RequestParam("id") int id) {
+    public JSONObject getFrequenceMesure(@RequestParam("id") int id, HttpServletResponse response) {
         JSONObject json = new JSONObject();
         try {
             Capteur capteur = cdao.getOne(id);
-            json.put("status", HttpStatus.OK);
+            response.setStatus(HttpStatus.OK.value());
             json.put("frequence", capteur.getFrequenceMesure());
             return json;
         }catch (Exception e){
-            json.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
-            json.put("frequence", 0);
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            json.put("frequence", null);
             return json;
         }
     }
