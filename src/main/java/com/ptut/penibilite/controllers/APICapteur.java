@@ -41,7 +41,7 @@ public class APICapteur {
     CapteurRepository cdao;
     @Autowired
     TypeCapteurRepository tdao;
-    
+
     /**
      * Enregistre une mesure
      *
