@@ -12,9 +12,6 @@ let lightColor = getComputedStyle(document.body).getPropertyValue('--light');
   'use strict';
   $(function() {
     let body = $('body');
-    let contentWrapper = $('.content-wrapper');
-    let scroller = $('.container-scroller');
-    let footer = $('.footer');
     let sidebar = $('.sidebar');
     let formModifyPiece = $('#modifyPiece');
     let boolFormModifyPiece = false;
@@ -22,6 +19,7 @@ let lightColor = getComputedStyle(document.body).getPropertyValue('--light');
 
     formModifyPiece.css('display','none');
 
+    //Afficher formuliare modifier pièce
     $('#btnPieceModify').click(function () {
       console.log("click",boolFormModifyPiece);
       if(boolFormModifyPiece){
@@ -58,9 +56,6 @@ let lightColor = getComputedStyle(document.body).getPropertyValue('--light');
         body.toggleClass('sidebar-icon-only');
       }
     });
-
-    //checkbox and radios
-    $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
     //fullscreen
     $("#fullscreen-button").on("click", function toggleFullScreen() {

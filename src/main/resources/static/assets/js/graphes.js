@@ -5,17 +5,18 @@ $('document').ready(function () {
     let capteursDataAjax;
 
     // Recupère les donnée de l'api
-    $.get(url+ 'api/piece/getTypeCapteur',{id : idPiece},(data)=>{
-        typesDataAjax = data.types;
-    }).done(()=>{
-        $.get(url+ 'api/piece/getDonnees',{id : idPiece},(data)=>{
-            capteursDataAjax = data;
-        }).done(initGraphs);
+    $.get(url+ 'api/piece/getTypeCapteur',{id : idPiece},(data)=>{ typesDataAjax = data.types;})
+        .done(()=>{
+            $.get(url+ 'api/piece/getDonnees',{id : idPiece},(data)=>{
+                capteursDataAjax = data;
+            })
+                .done(initGraphs);
     });
 
+    $.get(url + 'api/type/depassement',{id : idPiece}).done((dataJson)=>{initDoughnutChart(dataJson)});
+
     // Doughnut chart
-    $.get(url + 'api/type/depassement',{id : idPiece}).done((dataJson)=>{
-        console.log(dataJson);
+    function initDoughnutChart(dataJson) {
         let labels = [];
         let dataCapteur = [];
         let colors = [];
@@ -36,12 +37,9 @@ $('document').ready(function () {
             }]
         };
 
-        var options = {
+        let options = {
             responsive: true,
-            animation: {
-                animateScale: true,
-                animateRotate: true
-            }
+            maintainAspectRatio : false,
         };
 
         let config = {
@@ -51,12 +49,10 @@ $('document').ready(function () {
         };
 
         let doughnutChart = new Chart( $('#doughnutChart'), config);
-
-
-    });
-
+        doughnutChart.canvas.parentNode.style.height = '300px';
+    }
+    //Line chart
     function initGraphs() {
-
         // Création d'un graphe par type de capteur
         for (let t = 0; t<typesDataAjax.length; t++){
             let myType = typesDataAjax[t];
@@ -88,6 +84,7 @@ $('document').ready(function () {
                         data : dataOfC,
                         fill : false,
                         borderColor : randomColor,
+                        backgroundColor : 'rgba(153, 102, 255, 0.5)',
                         tension: 0.1
                     };
                     dataForG.push(dataCapteur);
@@ -143,7 +140,7 @@ $('document').ready(function () {
 
             };
 
-            new Chart( $('#chart'+myType), config);
+            let chart = new Chart( $('#chart'+myType), config);
         }
     }
 });

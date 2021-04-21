@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/type")
-public class typeCapteurRestController {
+public class TypeCapteurRestController {
 
 
     @Autowired

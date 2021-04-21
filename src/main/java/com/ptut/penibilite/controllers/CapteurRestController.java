@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/capteur")
-public class capteurRestController {
+public class CapteurRestController {
 
     @Autowired
     private CapteurRepository capteurRepository;
