@@ -47,11 +47,15 @@ public class TypeCapteurController {
     @PostMapping(path = "save")
     public String addTypeCapteur(TypeCapteur type, RedirectAttributes redirectInfo) {
         String message;
-        try {
-            typeCapteurRepository.save(type);
-            message = "Le type capteur '" + type.getLibelle() + "' a été correctement enregistrée";
-        } catch (DataIntegrityViolationException e) {
-            message = "Erreur : Le type capteur '" + type.getLibelle() + "' existe déjà";
+        if (type.getLimiteMax()<type.getLimiteMin() || type.getSeuilMax()<type.getSeuilMin()){
+            message = "Erreur : Les valeurs maximales ne peuvent être inferieur aux valeurs minimales ";
+        }else {
+            try {
+                typeCapteurRepository.save(type);
+                message = "Le type capteur '" + type.getLibelle() + "' a été correctement enregistrée";
+            } catch (DataIntegrityViolationException e) {
+                message = "Erreur : Le type capteur '" + type.getLibelle() + "' existe déjà";
+            }
         }
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:add";
@@ -92,19 +96,19 @@ public class TypeCapteurController {
             typeToUpDate.setLibelle(type.getLibelle());
             cpt++;
         }
-        if (type.getLimiteMin() != typeToUpDate.getLimiteMin()){
+        if (type.getLimiteMin() != typeToUpDate.getLimiteMin() && type.getLimiteMin()<type.getLimiteMax()){
             typeToUpDate.setLimiteMin(type.getLimiteMin());
             cpt++;
         }
-        if (type.getLimiteMax() != typeToUpDate.getLimiteMax()){
+        if (type.getLimiteMax() != typeToUpDate.getLimiteMax() && type.getLimiteMin()<type.getLimiteMax() ){
             typeToUpDate.setLimiteMax(type.getLimiteMax());
             cpt++;
         }
-        if (type.getSeuilMin() != typeToUpDate.getSeuilMin()){
+        if (type.getSeuilMin() != typeToUpDate.getSeuilMin() && type.getSeuilMin()<type.getSeuilMax()){
             typeToUpDate.setSeuilMin(type.getSeuilMin());
             cpt++;
         }
-        if (type.getSeuilMax() != typeToUpDate.getSeuilMax()){
+        if (type.getSeuilMax() != typeToUpDate.getSeuilMax() && type.getSeuilMin()<type.getSeuilMax()){
             typeToUpDate.setSeuilMax(type.getSeuilMax());
             cpt++;
         }
@@ -112,6 +116,7 @@ public class TypeCapteurController {
             typeToUpDate.setUnite(type.getUnite());
             cpt++;
         }
+
 
         if (cpt>0){
             try {

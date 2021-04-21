@@ -38,7 +38,7 @@
                                     <a th:href="@{/piece(id=${p.id})}" class="mdi mdi-eye mdi-24px position-absolute text-light" style="right: 6%"></a>
                                 </h2>
                                 <h4 class="mb-5">[[${#lists.size(p.capteurs)}]] capteurs</h4>
-                                <p class="card-text"><span th:each="c:${p.capteurs}">[[${c.libelle}]] </span> </p>
+                                <p class="card-text"><span th:each="c:${p.capteurs}">[[${c.libelle}]], </span> </p>
                             </div>
                         </div>
                     </div>
