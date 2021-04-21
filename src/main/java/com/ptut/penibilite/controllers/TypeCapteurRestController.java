@@ -65,8 +65,10 @@ public class TypeCapteurRestController {
             LocalDateTime dMax =LocalDateTime.parse(dateMax+ " 00:00:00", formatter);;
 
             for(Mesure m : c.getMesures()){
-                if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())&&(m.getDate().isAfter(dMin))&&(m.getDate().isBefore(dMax))){
-                    depassement++;
+                if((m.getDate().isAfter(dMin)) && (m.getDate().isBefore(dMax))) {
+                    if ((m.getValeur() >= c.getType().getSeuilMax()) || (m.getValeur() <= c.getType().getSeuilMin())) {
+                        depassement++;
+                    }
                 }
             }
             donnees.put("libelle",c.getLibelle());
