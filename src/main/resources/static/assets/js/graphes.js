@@ -4,10 +4,38 @@ $('document').ready(function () {
     let typesDataAjax;
     let capteursDataAjax;
 
+    initGraphToday();
+
     // click formulaire date début & fin
     $('#btnAfficherGraph').click(()=>{
         getDataAPI($('#debut').val(), $('#fin').val())
     });
+
+    // Initialisation des graphes à la date d'aujourd'hui
+    function initGraphToday(){
+        let today = new Date();
+        let month;
+        let day;
+        let date;
+
+        if (today.getMonth()<10){
+            month = '0'+today.getMonth();
+        }else {
+            month = today.getMonth()
+        }
+        if (today.getDate()<10){
+            day = '0'+today.getDate();
+        }else {
+            day = today.getDate()
+        }
+
+        date = today.getFullYear()+'-'+month+'-'+day;
+
+        $('#debut').val(date);
+        $('#fin').val(date);
+
+        getDataAPI(date, date);
+    }
 
     // Recupère les données de l'api
     function getDataAPI(dateDebut, dateFin){
