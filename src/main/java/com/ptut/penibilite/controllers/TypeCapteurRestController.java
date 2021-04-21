@@ -9,6 +9,9 @@ import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * @author Marie Cagnasso
  */
@@ -49,15 +52,20 @@ public class TypeCapteurRestController {
      * @return le nombre de mesures depassant les seuils en format Json
      */
     @GetMapping(value = "depassement")
-    public JSONObject depassementSeuil(@RequestParam("id")int id){
+    public JSONObject depassementSeuil(@RequestParam("id")int id,@RequestParam("dateMin") String dateMin,@RequestParam("dateMax") String dateMax){
         JSONObject json = new JSONObject();
         Piece piece = pdao.getOne(id);
         int cpt=0;
         for(Capteur c : piece.getCapteurs()){
             JSONObject donnees = new JSONObject();
             int depassement=0;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            LocalDateTime dMin =LocalDateTime.parse(dateMin+ " 00:00:00", formatter);;
+            LocalDateTime dMax =LocalDateTime.parse(dateMax+ " 00:00:00", formatter);;
+
             for(Mesure m : c.getMesures()){
-                if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())){
+                if((m.getValeur()>=c.getType().getSeuilMax())||(m.getValeur()<=c.getType().getSeuilMin())&&(m.getDate().isAfter(dMin))&&(m.getDate().isBefore(dMax))){
                     depassement++;
                 }
             }
