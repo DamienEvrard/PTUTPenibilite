@@ -23,7 +23,7 @@ public class Piece {
 
     /**
      *
-     * @return la liste de stype de capteur dans la salle
+     * @return la liste des types de capteur dans la salle
      */
     public List<String> getTypeCapteur(){
         List<String> listType = new ArrayList<>();

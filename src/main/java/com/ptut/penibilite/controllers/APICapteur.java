@@ -47,7 +47,7 @@ public class APICapteur {
      *
      * @param id id du capteur emetteur
      * @param valeur valeur de la mesure
-     * @return JSONObject contenant un message en fonction du resultat de loperation
+     * @return JSONObject contenant un message en fonction du resultat de l'operation
      */
     @GetMapping(value = "/ajout", produces = {"application/json"})
     public JSONObject ajoutMesure(@RequestParam("id") int id, @RequestParam("valeur") float valeur, HttpServletResponse response ) {
