@@ -30,13 +30,14 @@ public class TypeCapteurController {
      * @return vue formAjoutTypeCapteur.html
      */
     @GetMapping("add")
-    public String getPiece(Model model, @ModelAttribute("typeC") TypeCapteur typeCapteur){
+    public String getFormAdd(Model model, @ModelAttribute("typeC") TypeCapteur typeCapteur){
         model.addAttribute("pieces", pieceRepository.findAll());
         model.addAttribute("types", typeCapteurRepository.findAll());
         return "formAjoutTypeCapteur";
     }
 
     /**
+     * Sauvegarde de données : Ajout d'un type capteur
      * Appelé par 'formulaireAjoutTypeCapteur.html', méthode POST
      *
      * @param type Un type de capteur initialisée avec les valeurs saisies dans le formulaire
@@ -72,6 +73,7 @@ public class TypeCapteurController {
     }
 
     /**
+     * Sauvegarde de données : Modification d'un type capteur
      * Appelé par 'formModifySensorType.html', méthode POST
      *
      * @param type Un type de capteur initialisée avec les valeurs saisies dans le formulaire

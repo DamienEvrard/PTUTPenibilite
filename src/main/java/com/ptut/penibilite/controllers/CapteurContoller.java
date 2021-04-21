@@ -67,10 +67,10 @@ public class CapteurContoller {
     }
 
     /**
-     * Affiche le formulaire de modification d'un type capteur
+     * Affiche le formulaire de modification d'un capteur
      *
      * @param c modèle de donnée pour le formulaire
-     * @param myCapteur le type à modifier
+     * @param myCapteur le capteur à modifier
      * @return vue formModifySensor.html
      */
     @GetMapping(path = "modify")
@@ -84,7 +84,7 @@ public class CapteurContoller {
     }
 
     /**
-     * Appelé par 'formModifySensorType.html', méthode POST
+     * Appelé par 'formModifySensor.html', méthode POST
      *
      * @param capteur Un capteur initialisée avec les valeurs saisies dans le formulaire
      * @param redirectInfo pour transmettre des paramètres lors de la redirection
@@ -93,7 +93,7 @@ public class CapteurContoller {
      * @return une redirection vers le formAjoutCapteur si modifier
      */
     @PostMapping(path = "modify/save/{id}")
-    public String modifyTypeCapteur(Capteur capteur, RedirectAttributes redirectInfo,@PathVariable int id) {
+    public String modifyCapteur(Capteur capteur, RedirectAttributes redirectInfo,@PathVariable int id) {
         String message;
         int cpt = 0;
         Capteur capteurToUpDate = capteurRepository.getOne(id);
@@ -116,7 +116,7 @@ public class CapteurContoller {
                 capteurRepository.save(capteurToUpDate);
                 message = "Le capteur '" + capteurToUpDate.getLibelle() + "' a été correctement modifié";
             } catch (DataIntegrityViolationException e) {
-                message = "Erreur mis-à-jour : du capteur '" + capteurToUpDate.getLibelle();
+                message = "Erreur mise-à-jour : du capteur '" + capteurToUpDate.getLibelle();
             }
             redirectInfo.addFlashAttribute("message", message);
             return "redirect:/capteur/add?id="+capteurToUpDate.getSalle().getId();

@@ -19,6 +19,13 @@ public class PieceController {
     @Autowired
     private PieceRepository pieceRepository;
 
+    /**
+     * Affiche la page d'une pièce, méthode GET
+     *
+     * @param piece La piece consulté
+     * @param p modèle de donnée pour le formulaire de modification de la piece
+     * @return page.html
+     */
     @GetMapping("")
     public String getPiece(Model model, @RequestParam("id") Piece piece,@ModelAttribute("upDatePiece") Piece p){
         model.addAttribute("pieces", pieceRepository.findAll());
@@ -28,6 +35,12 @@ public class PieceController {
         return "piece";
     }
 
+    /**
+     * Affiche le formulaire d'ajout d'une pièce, méthode GET
+     *
+     * @param piece modèle de donnée pour le formulaire
+     * @return formAjoutPiece.html
+     */
     @GetMapping("add")
     public String getAddPiece(@ModelAttribute("piece") Piece piece, Model model){
         model.addAttribute("pieces", pieceRepository.findAll());
@@ -35,6 +48,7 @@ public class PieceController {
     }
 
     /**
+     * Sauvegarde de données : Ajout de la pièce
      * Appelé par 'formulaireAjoutPiece.html', méthode POST
      *
      * @param piece Une piece initialisée avec les valeurs saisies dans le formulaire
@@ -55,6 +69,7 @@ public class PieceController {
     }
 
     /**
+     * Sauvegarde de données : Modification des attributs d'une pièce
      * Appelé par 'piece.html', méthode POST
      *
      * @param piece Une piece initialisée avec les valeurs saisies dans le formulaire
