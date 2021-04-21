@@ -4,16 +4,23 @@ $('document').ready(function () {
     let typesDataAjax;
     let capteursDataAjax;
 
-    // Recupère les donnée de l'api
-    $.get(url+ 'api/piece/getTypeCapteur',{id : idPiece},(data)=>{ typesDataAjax = data.types;})
-        .done(()=>{
-            $.get(url+ 'api/piece/getDonnees',{id : idPiece},(data)=>{
-                capteursDataAjax = data;
-            })
-                .done(initGraphs);
+    // click formulaire date début & fin
+    $('#btnAfficherGraph').click(()=>{
+        getDataAPI($('#debut').val(), $('#fin').val())
     });
 
-    $.get(url + 'api/type/depassement',{id : idPiece}).done((dataJson)=>{initDoughnutChart(dataJson)});
+    // Recupère les données de l'api
+    function getDataAPI(dateDebut, dateFin){
+        $.get(url+ 'api/piece/getTypeCapteur',{id : idPiece},(data)=>{ typesDataAjax = data.types;})
+            .done(()=>{
+                $.get(url+ 'api/piece/getDonnees',{id : idPiece, dateMin: dateDebut, dateMax: dateFin},(data)=>{
+                    capteursDataAjax = data;
+                })
+                    .done(initGraphs);
+            });
+
+        $.get(url + 'api/type/depassement',{id : idPiece, dateMin: dateDebut, dateMax: dateFin}).done((dataJson)=>{initDoughnutChart(dataJson)});
+    }
 
     // Doughnut chart
     function initDoughnutChart(dataJson) {
@@ -48,9 +55,16 @@ $('document').ready(function () {
             options: options
         };
 
-        let doughnutChart = new Chart( $('#doughnutChart'), config);
+        let doughnutChart = Chart.getChart('doughnutChart');
+
+        if (doughnutChart !== undefined){
+            doughnutChart.destroy();
+        }
+
+        doughnutChart = new Chart( $('#doughnutChart'), config);
         doughnutChart.canvas.parentNode.style.height = '300px';
     }
+
     //Line chart
     function initGraphs() {
         // Création d'un graphe par type de capteur
@@ -105,7 +119,7 @@ $('document').ready(function () {
 
             // Ajout lignes seuil Max et Min
 
-            /*let options = {
+            let plugins = {
                 plugins: {
                     autocolors: false,
                     annotation: {
@@ -131,16 +145,22 @@ $('document').ready(function () {
                         }
                     }
                 }
-            };*/
+            };
 
             let config = {
                 type: 'line',
                 data: data,
-              //  options : options
+                plugins
 
             };
 
-            let chart = new Chart( $('#chart'+myType), config);
+            let chart = Chart.getChart('chart'+myType);
+
+            if (chart !== undefined){
+                chart.destroy();
+            }
+            chart = new Chart( $('#chart'+myType), config);
+            //chart.register({id : 'annotation'});
         }
     }
 });

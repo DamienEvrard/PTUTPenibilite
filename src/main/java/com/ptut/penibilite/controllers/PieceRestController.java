@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class PieceRestController {
     private PieceRepository pdao;
 
     @GetMapping("getDonnees")
-    public JSONObject getDonnees(Model model, @RequestParam("id") int id){
+    public JSONObject getDonnees(Model model, @RequestParam("id") int id,@RequestParam("dateMin") String dateMin,@RequestParam("dateMax") String dateMax){
         JSONObject json = new JSONObject();
         Piece piece = pdao.getOne(id);
         int cpt =0;
@@ -36,9 +37,17 @@ public class PieceRestController {
             JSONObject donnees = new JSONObject();
             List<Float> valeur = new ArrayList<>();
             List<LocalDateTime> date = new ArrayList<>();
-            for(Mesure m : listMesure){
-                valeur.add(m.getValeur());
-                date.add(m.getDate());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            LocalDateTime dMin =LocalDateTime.parse(dateMin+ " 00:00:00", formatter);;
+            LocalDateTime dMax =LocalDateTime.parse(dateMax+ " 00:00:00", formatter);;
+
+            for(Mesure m : listMesure) {
+                if ((m.getDate().isAfter(dMin))&&(m.getDate().isBefore(dMax))) {
+                    valeur.add(m.getValeur());
+                    date.add(m.getDate());
+                }
             }
             String unite = c.getType().getUnite();
             Float seuilMax = c.getType().getSeuilMax();
