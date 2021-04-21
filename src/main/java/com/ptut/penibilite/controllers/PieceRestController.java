@@ -26,6 +26,13 @@ public class PieceRestController {
     @Autowired
     private PieceRepository pdao;
 
+    /**
+     *
+     * @param id id de la piece
+     * @param dateMin date du debut du relevé
+     * @param dateMax date de fin du relevé
+     * @return JSONObject contenant pour chaque capteur la liste des mesures entre les deux date
+     */
     @GetMapping("getDonnees")
     public JSONObject getDonnees(Model model, @RequestParam("id") int id,@RequestParam("dateMin") String dateMin,@RequestParam("dateMax") String dateMax){
         JSONObject json = new JSONObject();
