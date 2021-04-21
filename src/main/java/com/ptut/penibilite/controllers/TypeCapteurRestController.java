@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author Marie Cagnasso
+ * @author Marie Cagnasso & Damie
  */
 @RestController
 @RequestMapping("/api/type")

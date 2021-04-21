@@ -8,7 +8,15 @@ $('document').ready(function () {
 
     // click formulaire date début & fin
     $('#btnAfficherGraph').click(()=>{
-        getDataAPI($('#debut').val(), $('#fin').val())
+        let debut = $('#debut').val();
+        let fin = $('#fin').val();
+        $('#msgEtat').text("");
+
+        if (debut<=fin){
+            getDataAPI(debut, fin);
+        }else{
+            $('#msgEtat').text( "La date de début doit être inférieur à la date de fin");
+        }
     });
 
     // Initialisation des graphes à la date d'aujourd'hui
