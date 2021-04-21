@@ -28,8 +28,15 @@ public class Capteur {
     @OneToMany(mappedBy="capteur")
     List<Mesure> mesures;
 
+    /**
+     *
+     * @return la valeur de la derniere mesure
+     */
     public Float getLastMesure(){
-        return this.getMesures().get(this.getMesures().size()-1).getValeur();
+        if(this.getMesures().size() > 0) {
+            return this.getMesures().get(this.getMesures().size() - 1).getValeur();
+        }
+        return new Float(0);
     }
     
 }
