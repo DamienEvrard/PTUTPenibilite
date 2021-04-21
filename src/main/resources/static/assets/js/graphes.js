@@ -14,15 +14,20 @@ $('document').ready(function () {
     // Initialisation des graphes à la date d'aujourd'hui
     function initGraphToday(){
         let today = new Date();
-        let month;
-        let day;
+        let month = today.getMonth();
+        let day = today.getDate();
         let date;
 
-        if (today.getMonth()<10){
-            month = '0'+today.getMonth();
+        if (month<10){
+            if (month == 0){
+                month = '1';
+            }else{
+                month = '0'+parseInt(month+1);
+            }
         }else {
-            month = today.getMonth()
+            month = parseInt(month+1);
         }
+
         if (today.getDate()<10){
             day = '0'+today.getDate();
         }else {
