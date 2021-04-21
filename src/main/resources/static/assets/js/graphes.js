@@ -169,19 +169,20 @@ $('document').ready(function () {
                                 drawTime: 'afterDatasetsDraw',
                                 type: 'line',
                                 xMin: 0,
-                                xMax: 100000000000,
+                                xMax: 100,
                                 yMin: sMin,
                                 yMax: sMin,
-                                backgroundColor: 'rgba(255, 0, 0, 0.5)'
+                                borderColor:'rgba(255, 0, 0, 0.5)'
+
                             },
                             line2: {
                                 drawTime: 'afterDatasetsDraw',
                                 type: 'line',
                                 xMin: 0,
-                                xMax: 100000000000,
+                                xMax: 100,
                                 yMin: sMax,
                                 yMax: sMax,
-                                backgroundColor: 'rgba(255, 0, 0, 0.5)'
+                                borderColor:'rgba(255, 0, 0, 0.5)'
                             }
                         }
                     }
@@ -191,7 +192,7 @@ $('document').ready(function () {
             let config = {
                 type: 'line',
                 data: data,
-                plugins
+                options: plugins
 
             };
 
@@ -201,7 +202,6 @@ $('document').ready(function () {
                 chart.destroy();
             }
             chart = new Chart( $('#chart'+myType), config);
-            //chart.register({id : 'annotation'});
         }
     }
 });
