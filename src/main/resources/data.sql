@@ -1,63 +1,63 @@
-INSERT INTO PIECE (id, libelle) VALUES
-    (1, 'Salle de réunion'),
-    (2, 'Salle de travail'),
-    (3, 'Bureau du PDG');
+INSERT INTO PIECE (libelle) VALUES
+    ('Salle de réunion'),
+    ('Salle de travail'),
+    ('Bureau du PDG');
 
 
 
-INSERT INTO TYPE_CAPTEUR (id, libelle,limite_Max,limite_Min,unite,seuil_Max,seuil_Min) VALUES
-    (1, 'Température','50','-30','°C','30','-5'),
-    (2, 'Bruit','180','0','dB','81','0'),
-    (3, 'Vibration','15000','0','m/s²','1.15','0');
+INSERT INTO TYPE_CAPTEUR (libelle,limite_Max,limite_Min,unite,seuil_Max,seuil_Min) VALUES
+    ('Température','50','-30','°C','30','-5'),
+    ('Bruit','180','0','dB','81','0'),
+    ('Vibration','15000','0','m/s²','1.15','0');
 
 
 
-INSERT INTO CAPTEUR (id, libelle,frequence_Mesure,salle_id,type_id) VALUES
-    (1, 'Thermomètre','60',1,1),
-    (10, 'Thermomètre porte','60',1,1),
-    (11, 'Thermomètre placard','60',1,1),
-    (2, 'Dosimètre','120',1,2),
-    (3, 'Vibromètre','420',1,3),
+INSERT INTO CAPTEUR (libelle,frequence_Mesure,salle_id,type_id) VALUES
+    ('Thermomètre','60',1,1),
+    ('Thermomètre porte','60',1,1),
+    ('Thermomètre placard','60',1,1),
+    ('Dosimètre','120',1,2),
+    ('Vibromètre','420',1,3),
 
-    (4, 'Thermomètre','60',2,1),
-    (5, 'Dosimètre','120',2,2),
-    (6, 'Vibromètre','420',2,3),
+    ('Thermomètre','60',2,1),
+    ('Dosimètre','120',2,2),
+    ('Vibromètre','420',2,3),
 
-    (7, 'Thermomètre','60',3,1),
-    (8, 'Dosimètre','120',3,2),
-    (9, 'Vibromètre','420',3,3);
+    ('Thermomètre','60',3,1),
+    ('Dosimètre','120',3,2),
+    ('Vibromètre','420',3,3);
 
 
 
-INSERT INTO MESURE (id,date,valeur,capteur_id) VALUES
-    (01, TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'18',1),
-    (02,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'35',1),
-    (21,  TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'25',1),
-    (22,  TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'15',10),
-    (23,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
-    (24,  TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
-    (25,  TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'25',11),
-    (26,  TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'5',11),
-    (27,  TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'35',11),
-    (03,  TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'22',4),
-    (04,  TO_DATE('2021-03-28 12:30:00','YYYY-MM-DD HH24:MI:SS'),'24',4),
-    (05,  TO_DATE('2021-03-29 8:30:00','YYYY-MM-DD HH24:MI:SS'),'16',7),
-    (06,  TO_DATE('2021-03-29 9:30:00','YYYY-MM-DD HH24:MI:SS'),'18',7),
+INSERT INTO MESURE (date,valeur,capteur_id) VALUES
+    (TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'18',1),
+    (TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'35',1),
+    (TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'25',1),
+    (TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'15',10),
+    (TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
+    (TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'20',10),
+    (TO_DATE('2021-03-27 09:30:00','YYYY-MM-DD HH24:MI:SS'),'25',11),
+    (TO_DATE('2021-03-27 10:30:00','YYYY-MM-DD HH24:MI:SS'),'5',11),
+    (TO_DATE('2021-03-27 11:30:00','YYYY-MM-DD HH24:MI:SS'),'35',11),
+    (TO_DATE('2021-03-28 11:30:00','YYYY-MM-DD HH24:MI:SS'),'22',4),
+    (TO_DATE('2021-03-28 12:30:00','YYYY-MM-DD HH24:MI:SS'),'24',4),
+    (TO_DATE('2021-03-29 8:30:00','YYYY-MM-DD HH24:MI:SS'),'16',7),
+    (TO_DATE('2021-03-29 9:30:00','YYYY-MM-DD HH24:MI:SS'),'18',7),
 
-    (08,  TO_DATE('2021-03-29 9:20:00','YYYY-MM-DD HH24:MI:SS'),'67',8),
-    (09,  TO_DATE('2021-03-29 11:20:00','YYYY-MM-DD HH24:MI:SS'),'90',5),
-    (10,  TO_DATE('2021-03-29 14:20:00','YYYY-MM-DD HH24:MI:SS'),'85',2),
-    (11,  TO_DATE('2021-03-28 13:30:00','YYYY-MM-DD HH24:MI:SS'),'105',5),
-    (12,  TO_DATE('2021-03-28 15:30:00','YYYY-MM-DD HH24:MI:SS'),'80',2),
-    (13,  TO_DATE('2021-03-28 17:30:00','YYYY-MM-DD HH24:MI:SS'),'100',5),
-    (14,  TO_DATE('2021-03-28 18:30:00','YYYY-MM-DD HH24:MI:SS'),'60',8),
+    (TO_DATE('2021-03-29 9:20:00','YYYY-MM-DD HH24:MI:SS'),'67',8),
+    (TO_DATE('2021-03-29 11:20:00','YYYY-MM-DD HH24:MI:SS'),'90',5),
+    (TO_DATE('2021-03-29 14:20:00','YYYY-MM-DD HH24:MI:SS'),'85',2),
+    (TO_DATE('2021-03-28 13:30:00','YYYY-MM-DD HH24:MI:SS'),'105',5),
+    (TO_DATE('2021-03-28 15:30:00','YYYY-MM-DD HH24:MI:SS'),'80',2),
+    (TO_DATE('2021-03-28 17:30:00','YYYY-MM-DD HH24:MI:SS'),'100',5),
+    (TO_DATE('2021-03-28 18:30:00','YYYY-MM-DD HH24:MI:SS'),'60',8),
 
-    (15,  TO_DATE('2021-03-29 16:20:00','YYYY-MM-DD HH24:MI:SS'),'456',3),
-    (16,  TO_DATE('2021-03-30 17:20:00','YYYY-MM-DD HH24:MI:SS'),'764',3),
-    (17,  TO_DATE('2021-03-31 16:20:00','YYYY-MM-DD HH24:MI:SS'),'168',9),
-    (18,  TO_DATE('2021/04/21 17:20:00','YYYY-MM-DD HH24:MI:SS'),'886',6),
-    (19,  TO_DATE('2021/04/02 16:20:00','YYYY-MM-DD HH24:MI:SS'),'336',9),
-    (20,  TO_DATE('2021/04/03 17:20:00','YYYY-MM-DD HH24:MI:SS'),'852',6);
+    (TO_DATE('2021-03-29 16:20:00','YYYY-MM-DD HH24:MI:SS'),'456',3),
+    (TO_DATE('2021-03-30 17:20:00','YYYY-MM-DD HH24:MI:SS'),'764',3),
+    (TO_DATE('2021-03-31 16:20:00','YYYY-MM-DD HH24:MI:SS'),'168',9),
+    (TO_DATE('2021/04/21 17:20:00','YYYY-MM-DD HH24:MI:SS'),'886',6),
+    (TO_DATE('2021/04/02 16:20:00','YYYY-MM-DD HH24:MI:SS'),'336',9),
+    (TO_DATE('2021/04/03 17:20:00','YYYY-MM-DD HH24:MI:SS'),'852',6);
 
 INSERT INTO MESURE (date,valeur,capteur_id) VALUES
 (  TO_DATE('2021-03-29 11:30:00','YYYY-MM-DD HH24:MI:SS'),'2',1),
