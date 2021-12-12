@@ -1,4 +1,3 @@
-
 package com.ptut.penibilite.daos;
 import com.ptut.penibilite.entities.Capteur;
 import java.time.LocalDateTime;
